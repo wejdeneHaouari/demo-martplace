@@ -1,0 +1,271 @@
+@font-face {
+  font-family: Aileron Reguler;
+  src: url("../../../assets/fonts/aileron/Aileron-Regular.otf");
+}
+
+.Container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Container .bottomFooter {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 23px;
+}
+
+.bottomFooter p {
+  text-align: right;
+  color: #747474;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+.Container .bottomFooter img {
+  height: 26px;
+  width: 100px;
+}
+
+footer .contentWrapper {
+  padding: 60px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  border-bottom: solid 1px #aeb9db;
+  background-image: linear-gradient(
+    to right,
+    #0f1133,
+    #0b0d15 100%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+.leftFooter {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 10px;
+}
+
+.rightFooter {
+  width: 40%;
+  height: 100%;
+}
+
+.rightFooter p {
+  font-family: "Aileron Reguler";
+  font-size: 26px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.leftFooter .socialMediaColumn,
+.leftFooter .footerLinksCol1,
+.leftFooter .footerLinksCol2 {
+  width: 200px;
+  height: 100%;
+}
+
+.socialMediaColumn img {
+  width: 100%;
+}
+
+.socialMediaLogoWrapper {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.socialMediaLogoWrapper img {
+  width: 20px;
+  height: 20px;
+}
+
+.leftFooter button {
+  margin-top: 30px;
+  width: 100%;
+  height: 50px;
+  background-color: #3e4ef1;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 14px;
+  font-family: "Aileron Reguler";
+  font-weight: 600;
+}
+
+.footerLinksCol1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer a {
+  color: #fff;
+}
+
+.footerLinksCol1 a {
+  margin-top: 15px;
+}
+
+.footerLinksCol2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footerLinksCol2 a {
+  margin-top: 15px;
+}
+
+.formWrapper input::placeholder,
+.formWrapper textarea::placeholder {
+  color: #a0a0a0;
+  font-size: 12px;
+  font-family: "Aileron Reguler";
+  padding: 0 6px;
+  margin: 0;
+}
+
+.formWrapper select,
+.formWrapper select option {
+  width: 100%;
+}
+
+.formWrapper textarea {
+  width: 100%;
+  height: 70px;
+}
+
+.formWrapper {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.formWrapper input[type="submit"] {
+  width: 143px;
+  height: 50px;
+  background-color: #4d96f6;
+  color: white;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.inputWrapper input {
+  width: 49%;
+}
+
+footer select::placeholder,
+footer input::placeholder,
+footer textarea::placeholder {
+  color: #a0a0a0;
+}
+
+footer select,
+footer input,
+footer textarea {
+  font-family: "Aileron Reguler";
+  padding: 8px 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #000;
+  border: 1px solid #dedede;
+}
+
+footer form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+footer .formWrapper input[type="submit"] {
+  color: white;
+  padding: 15px 47px;
+  background-color: #4d96f6;
+  align-self: start;
+  border: none;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 992px) {
+  footer .leftFooter {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    margin: 0;
+  }
+  footer .rightFooter {
+    width: 100%;
+  }
+  footer .formWrapper {
+    padding: 20px 10px 0;
+  }
+}
+
+.footer__payment-methods {
+  background-color: #f3f3f3;
+  padding: 20px 10px 30px;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+}
+.footer__payment-methods h5 {
+  margin-bottom: 20px;
+  color: #000;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.footer__payment-methods-ctn {
+  align-items: center;
+  width: 100%;
+  column-gap: 10px;
+}
+.footer__payment-methods-ctn img {
+  max-height: 32px;
+}
+.footer__payment-methods-ctn > div {
+  grid-column-gap: 10px;
+  column-gap: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.footer__payment-methods-cards {
+  flex-basis: 45%;
+}
+.footer__payment-methods--crypto {
+  flex-basis: 55%;
+}
+.footer__payment-methods-cards img {
+  transform: scale(1.9);
+}
+
+@media screen and (max-width: 400px) {
+  .footer__payment-methods {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -1,0 +1,843 @@
+.dashboardContainer {
+  background-color: #e9e9e9;
+  color: black;
+}
+.logo {
+  width: 186px;
+  height: 36.8px;
+  object-fit: contain;
+}
+.card-block {
+  margin-left: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 260px;
+  border-radius: 0%;
+  object-fit: cover;
+}
+
+.paginate {
+  text-align: center;
+}
+ul li {
+  display: inline-block;
+}
+.pagination {
+  display: block;
+  z-index: 0;
+  position: relative;
+}
+
+.borderNone {
+  border: none;
+}
+.react-thumbnail-generator img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+.dashboardContainer .card {
+  height: 100%;
+}
+.dashboardContainer .card-flyer .image-box {
+  /* background: black; */
+  overflow: hidden;
+  /* box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50); */
+  max-width: 500px;
+  width: 100% !important;
+  /* position: relative; */
+}
+.dashboardContainer .card-flyer .image-box img {
+  transition: all 0.9s ease;
+  width: 100%;
+  max-height: 200px;
+  border-radius: 0%;
+}
+.dashboardContainer .card-flyer .image-box video {
+  transition: all 0.9s ease;
+  width: 100%;
+  max-height: 140px;
+}
+.dashboardContainer .card-flyer:hover .image-box img {
+  border-color: #4d96f6;
+  /* -webkit-transform:scale(1.15);
+  -moz-transform:scale(1.15);
+  -ms-transform:scale(1.15);
+  -o-transform:scale(1.15);
+  transform:scale(1.15); */
+}
+.dashboardContainer .card-flyer:hover .image-box video {
+  border-color: #4d96f6;
+}
+.dashboardContainer .card-flyer .text-box {
+  text-align: center;
+}
+.dashboardContainer .text-container {
+  padding-top: 20px;
+  padding-bottom: 10px !important;
+  background-color: #f4f7f6;
+}
+.dashboardContainer .card-flyer {
+  background: #f4f7f6 !important;
+  /* margin-top: 50px; */
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  /* box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.40); */
+}
+.dashboardContainer .card-flyer:hover {
+  background: #fff;
+  /* box-shadow: 0px 15px 26px rgba(0, 0, 0, 0.50);
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; */
+}
+/* .dashboardContainer .card-block{
+} */
+.bottomright {
+  position: absolute;
+  top: 130px;
+  right: 0px;
+  font-size: 27px;
+  z-index: 0;
+}
+img.verifiedIcon {
+  content: url("../../assets/images/verifiedIcon.png");
+  width: 70px !important;
+  height: 70px !important;
+}
+.mymodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  border: 1px solid #1d1d1d;
+  background: #1d1d1d;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  width: 50%;
+}
+
+.mymodal input[type="text"] {
+  background-color: black;
+  color: #ffffff;
+}
+
+.myoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+.dashboardContainer .pagination {
+  margin-bottom: 150px !important;
+}
+.dashboardContainer .active {
+  color: #3e4ef1;
+}
+.shareClass {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  align-items: center;
+}
+.Digital-Art {
+  height: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.89;
+  letter-spacing: 0.32px;
+  color: #1c1c1c;
+  text-transform: capitalize;
+  font-family: "Playfair Display";
+}
+.createdDate {
+  height: 28px;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: #545454;
+}
+.toogleClass {
+  margin-right: 20px;
+}
+.nav-link {
+  padding: 0.5rem 0;
+}
+nav.secondHeader {
+  /* height: 50px; */
+  background-color: #f4f3f4;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subHeading {
+  height: 16px;
+  margin: 10px 21px;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: 1px;
+  color: #1c1c1c;
+}
+.subHeadingButton {
+  height: 50px;
+  border-radius: 0%;
+  width: 100%;
+}
+.Line-Copy-6 {
+  /* width: 2px; */
+  height: 50px;
+  /* margin: 0 21px 0 46px; */
+  border: solid 0.5px #e9e9e9;
+}
+@media screen and (max-width: 890px) {
+  .secondHeader {
+    height: auto;
+    background-color: #f4f3f4;
+    margin: 0px;
+  }
+  .collapse:not(.show) {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 666px) {
+  .navbar-nav {
+    flex-direction: column !important;
+  }
+  .collapse:not(.show) {
+    display: block;
+  }
+  .dashboardContainer .navbar {
+    height: 130px;
+    padding: 0%;
+  }
+  .secondHeader {
+    height: auto;
+    background-color: #f4f3f4;
+    margin: 0px;
+  }
+  .Line-Copy-6 {
+    height: 0px;
+  }
+}
+.blue {
+  color: blue;
+}
+.green {
+  color: green;
+}
+a {
+  cursor: pointer;
+}
+.gray {
+  color: gray;
+}
+.cardHover {
+  /* width: 300px; */
+  height: 280px;
+  /* padding: 0 1px 19px; */
+  background-color: #f4f7f6;
+  box-shadow: 2px 2px 5px 1px rgba(63, 63, 63, 0.29);
+  border-radius: 0% !important;
+}
+.cardHover:hover {
+  border: 1px solid #4d96f6;
+}
+.nav-item .active {
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: 1px;
+  color: #1c1c1c !important;
+}
+.trapezoid {
+  color: white;
+  border-right: 25px solid transparent;
+  height: 19px;
+  padding: 0px 10px;
+  position: absolute;
+  top: 176px;
+
+  /* width: 130px;
+  padding: 2px 27px 7px 24px; */
+  object-fit: contain;
+}
+.categoryClass {
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.44;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+}
+i {
+  cursor: pointer;
+}
+#demo-2 input[type="search"] {
+  padding-left: 10px;
+  color: transparent;
+  cursor: pointer;
+  padding-top: 10px;
+}
+#demo-2 input[type="search"]:hover {
+  background-color: #fff;
+}
+#demo-2 input[type="search"]:focus {
+  color: #000;
+  background-color: #fff;
+  cursor: auto;
+  padding: 10px 0px 10px 32px;
+}
+#demo-2 input:-moz-placeholder {
+  color: transparent;
+}
+#demo-2 input::-webkit-input-placeholder {
+  color: transparent;
+}
+input[type="search"] {
+  background: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png)
+    no-repeat 9px center;
+}
+.admin__verifying {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.18px;
+  color: #3e4ef1;
+}
+.Transfer {
+  height: 17px;
+  margin: 24px 0px 3px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.18px;
+  text-align: right;
+  color: #6693f3;
+  cursor: pointer;
+}
+.heading {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 40px;
+}
+.Digital-Art {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 20px;
+}
+.activateerror {
+  margin: 10% 20%;
+}
+.listSaleBtn {
+  display: none;
+}
+
+.listCard:hover .listSaleBtn {
+  display: block;
+  width: 100%;
+  height: 50px;
+  margin: 16px 0 0;
+  padding: 8px 17px 18px 18px;
+  border-radius: 1px;
+  background-color: #3e4ef1;
+  color: white;
+}
+.activateerror {
+  margin: 10% 20%;
+}
+.dashboard__sort select {
+  font-size: 11px;
+  color: #1c1c1c;
+  background-color: #fff;
+  border: none;
+  padding: 10px;
+}
+.dashboard__sort {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+.cardNftAdmin {
+  border: none !important;
+  position: relative;
+}
+.btnTransfer {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: solid 1.2px #3e4ef1;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #3e4ef1;
+  cursor: pointer;
+}
+.btnVerify {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: solid 1.2px #0a1567;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #0a1567;
+  cursor: pointer;
+}
+
+.btnListIt {
+  padding: 5px 15px;
+  border-radius: 3px;
+  background-color: #0a1567;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.card__nft-tag {
+  position: relative;
+}
+
+a.bottomright {
+  position: absolute;
+  top: 41%;
+  right: 20px;
+  font-size: 27px;
+  z-index: 1;
+}
+.card-block--dash {
+  margin-left: 5px !important;
+}
+
+.cf__card {
+  background-color: #e9e9e9;
+  max-width: 475px;
+}
+.cf__card--top {
+  display: flex;
+}
+
+.cf__btn-ctn {
+  padding: 0px 20px 30px 20px;
+}
+.cf__card--top {
+  padding: 20px 20px 0 20px;
+}
+.cf__price-ctn {
+  padding: 20px;
+}
+.cf__card-img-top {
+  width: 150px;
+}
+.cf__card-flyer {
+  margin-right: 2rem;
+}
+.cf__btn-ctn {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.cf__btn-ctn button {
+  width: 100%;
+}
+.cf__btn-ctn button.btn--sbd {
+  background-color: #858585 !important;
+  border: none;
+}
+
+.cf__verified p {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #5c973c;
+  margin-bottom: 5px;
+}
+
+.cf__verified span {
+  font-size: 14px;
+  letter-spacing: normal;
+  color: #0a1567;
+  margin-left: 5px;
+  transform: translateX(5px);
+  display: block;
+}
+.cf__card-topbar {
+  background-color: #d3d3d3;
+  padding: 20px;
+}
+
+.cf__card-topbar button {
+  background-color: #0a1567;
+  border-radius: 50%;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: normal;
+}
+.cf__card-topbar h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.43px;
+  color: #1c1c1c;
+}
+.cf__card-title {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  color: #0a1567;
+  margin: 0;
+}
+.cf__card__desc,
+.cf__text-container p {
+  font-size: 14px;
+  letter-spacing: normal;
+  color: #1d222f;
+  word-break: break-all;
+}
+.btn.btn-primary {
+  font-weight: 600 !important;
+}
+
+.react-confirm-alert-overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+.verified__text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.44px;
+  color: #5c973c;
+}
+
+.card__nft--subctn {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.Toastify__toast-container--top-right {
+  z-index: 99999999999 !important;
+}
+
+.cf__price-ctn select,
+.cf__price-ctn input,
+.cf__price-ctn p {
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.44px;
+  color: #545454;
+  border-radius: 3px;
+}
+.cf__price-ctn select:focus-visible,
+.cf__price-ctn input:focus-visible {
+  border: none;
+  outline: none;
+}
+.cf__price-ctn select {
+  padding: 5px;
+  padding-left: 30px;
+}
+.cf__price-ctn input {
+  padding: 4px;
+  width: 300px;
+  transform: translateX(-2px);
+}
+.cf__price-ctn {
+  position: relative;
+}
+.cf__price-ctn:after {
+  content: "$";
+  position: absolute;
+  left: 24.5%;
+  top: 54%;
+  color: #a0a0a0;
+  font-weight: 600;
+  font-size: 12px;
+}
+.cf__price-ctn::before {
+  /* content: url('../../assets/images/us-flag.png'); */
+  position: absolute;
+  left: 5%;
+  top: 51%;
+  color: #dedede;
+  font-weight: 600;
+  z-index: 999;
+}
+
+.cf__price-ctn p {
+  position: relative;
+}
+.cf__price-ctn p:after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  top: 29px;
+  width: 1px;
+  height: 20px;
+  background: #dedede;
+  font-weight: 600;
+  font-size: 12px;
+  z-index: 99999;
+}
+.cardNftAdmin .card__nft-tag {
+  transform: none;
+}
+
+h3.card-title {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.32px;
+  color: #1c1c1c;
+  padding-bottom: 7px;
+  max-height: 22px;
+  overflow: hidden;
+}
+h6.card__desc {
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 12px;
+  color: #545454;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.card__nft {
+  margin-bottom: 24px;
+  height: 100%;
+  overflow: hidden;
+  max-height: 361.5px;
+}
+
+.card__nft--btm img {
+  width: 32px;
+  transform: translateY(-17px);
+}
+.card__nft--btm p {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: 0.18px;
+  text-align: right;
+  color: #858585;
+}
+
+.card__nft--btm span {
+  margin-left: 3px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: normal;
+  color: #0a1567;
+  transform: translateY(0.7px);
+}
+.card__nft-btn {
+  padding: 15px 22px;
+  border-radius: 1px;
+  background-color: #3e4ef1;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+.card__nft-btn-sold_out {
+  padding: 15px 22px;
+  border-radius: 1px;
+  background-color: #b6271c;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+.card__nft:hover {
+  height: 100%;
+}
+.card__nft button {
+  opacity: 0;
+}
+.card__nft:hover button {
+  opacity: 1;
+}
+
+.card__nft-wrp {
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.card__nft-wrp-with {
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.card__nft:hover .card__nft-wrp {
+  transform: translateY(-50px);
+}
+
+.card__nft:hover .card__nft-wrp-with {
+  transform: translateY(-60px);
+}
+
+.card__nft-tag {
+  padding: 2px 0;
+  background-color: #ff0096;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #fff;
+  max-width: 75px;
+  text-transform: capitalize;
+  text-align: center;
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+  position: relative;
+}
+/* .card__nft-wrp:after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #ac1543;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%);
+  bottom: 88%;
+  left: -7.2px;
+  z-index: 0;
+} */
+.dropdown__sortby button {
+  font-size: 14px;
+  width: 200px;
+  text-align: left;
+}
+.cardNftAdmin .card {
+  overflow: hidden;
+}
+
+/* .dropdown__sortby .dropdown-menu {
+  margin-top: 5px;
+  margin-left: -12px;
+} */
+
+.admindash__queued {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.18px;
+  color: #0a1567;
+}
+
+.admindash__search {
+  border: none;
+  margin-top: 5.5px;
+  padding: 8px 0px 8px 40px;
+  transform: translateX(10px);
+  cursor: pointer;
+}
+
+.admindash__search:focus {
+  outline: none;
+  border: 1.5px solid #000;
+  width: 300px;
+}
+
+.css__loader {
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #3e4ef1;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cf__card--create .cf__btn-ctn button {
+  text-transform: capitalize;
+}
+.cf__card--create h6 {
+  text-align: center;
+  margin: 20px auto 40px auto;
+  font-size: 16px;
+}
+.cf__card--create .cf__card--top {
+  justify-content: center;
+}
+
+.cf__price-ctn--input-dash {
+  padding-left: 30px !important;
+  /* width: 350px !important; */
+}

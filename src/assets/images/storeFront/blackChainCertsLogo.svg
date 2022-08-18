@@ -1,0 +1,11 @@
+<svg width="131" height="26" viewBox="0 0 131 26" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <g fill="#020202" fill-rule="nonzero">
+            <path d="m5.566 25.324-.21.006L0 25.329v-2.844h5.356c.692 0 1.267-.511 1.378-1.183h2.808c-.118 2.174-1.836 3.915-3.976 4.022zm-.21-16.348c2.245 0 4.078 1.796 4.187 4.053l.005.213v3.792H6.753v-3.792c0-.74-.553-1.347-1.262-1.416l-.135-.006H0V8.976h5.356z"/>
+            <path d="M4.89 12.53v3.793c0 .74.555 1.347 1.263 1.416l.135.006h5.356v2.844H6.288c-2.245 0-4.078-1.796-4.187-4.053l-.005-.213V12.53H4.89zm6.754-8.294V7.08H6.288c-.692 0-1.267.512-1.378 1.185H2.102C2.22 6.089 3.938 4.348 6.08 4.24l.209-.005h5.356z"/>
+        </g>
+        <text font-family="PlayfairDisplay-Bold, Playfair Display" font-size="20.995" font-weight="bold" fill="#030303" transform="translate(0 .024)">
+                    <tspan x="15.429" y="23">ChainCerts</tspan>
+                </text>
+    </g>
+</svg>

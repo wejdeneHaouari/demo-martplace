@@ -1,0 +1,292 @@
+.createContainer {
+  color: black;
+  background-color: #e9e9e9;
+}
+.createContainer .cardContainer {
+  margin: 50px 100px 50px 100px;
+}
+.createContainer p {
+  float: left;
+}
+@media screen and (max-width: 576px) {
+  .createContainer .cardContainer {
+    margin: 50px 0px;
+  }
+  .cardContainer .previewContainer {
+    width: auto !important;
+    height: 283px;
+    margin: 11.1px 32.6px 22.9px 62.4px;
+    padding: 6.9px 6.5px 7.1px 6.5px;
+    border-radius: 10px;
+    border: solid 1px #858585;
+  }
+}
+.nav-item:hover:after {
+  background: none;
+}
+#upload-button {
+  display: none;
+}
+label h5 {
+  display: none;
+}
+.cardContainer .previewContainer {
+  padding: 20px 0px 50px;
+  background-color: #fff;
+
+  /* height:80px; */
+  max-width: 100%;
+}
+.thumbnailClass {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  margin: auto;
+  padding: 50px 0px 50px 50px;
+}
+.previewContainer label {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+.year-picker {
+  position: relative;
+  outline: none;
+  width: 100% !important;
+  list-style: none;
+  /* font-size: 14px; */
+  text-align: left;
+  background-color: #fff;
+  border-radius: 4px;
+  background-clip: padding-box;
+  /* line-height: 1.5; */
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border: 1px solid transparent;
+  border-color: #d9d9d9;
+}
+label img {
+  display: grid;
+  width: 100%;
+  align-content: center;
+  /* margin: 0 70px; */
+}
+.previewContainer {
+  width: 364px;
+  height: 283px;
+  margin: 11.1px 40.6px 22.9px 0px;
+  /* padding: 54.9px 49.4px 116.1px 87.6px; */
+  border-radius: 10px;
+  border: 1px dashed #858585;
+  background-image: radial-gradient(circle at 50% 50%, #fff, #dfdfdf 123%);
+}
+.labelTxt {
+  display: flex;
+}
+.CREATE-CERTIFICATE {
+  height: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.8;
+  letter-spacing: 1.43px;
+  color: #0a1567;
+  margin: 35px;
+}
+.bg-light {
+  background-color: #fff;
+}
+.clearBtn {
+  margin-right: 0px !important;
+  border-radius: 0%;
+  width: 100px !important;
+  height: 50px;
+}
+.mandatory {
+  color: red;
+}
+.labelClass {
+  height: 16px;
+  /* margin: 22px 1px 10px 67px; */
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  color: #545454;
+}
+.btn-outline-primary {
+  padding: 13px;
+}
+.choseFile {
+  width: auto !important;
+  padding: 13px;
+  margin: 10%;
+  padding: 3%;
+}
+.bg-white {
+  background-color: #f4f3f4 !important;
+  color: black;
+  border: solid 1px #e9e9e9 !important;
+}
+.form-control {
+  margin: 0px;
+}
+.editIcon {
+  position: absolute;
+  bottom: 40px;
+  left: 150px;
+}
+.red {
+  color: red;
+}
+.trashIcon {
+  position: absolute;
+  bottom: 42px;
+  left: 200px;
+}
+.innerDiv label {
+  text-align: center;
+}
+.blueColorIcon {
+  color: #0a1567;
+}
+.property {
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.8;
+  letter-spacing: 1.43px;
+  color: #0a1567;
+  margin-bottom: 5px;
+}
+.Rectangle {
+  width: 296px;
+  height: 100px;
+  margin: 25px;
+  padding: 15px 15px 8px 19px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  overflow: auto;
+}
+.traitsContent {
+  display: flex;
+  align-items: center;
+}
+button.listforSale {
+  background-color: lightgray;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  height: 50px;
+  position: relative;
+  width: 130px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button.listforSale:hover {
+  background-color: lightgray;
+}
+button.listforSale:focus,
+button.listforSale:active {
+  outline: none;
+}
+button.listforSale::-moz-focus-inner {
+  border: 0;
+}
+
+.pin {
+  background-color: white;
+  border-radius: 98px;
+  height: 47px;
+  left: 4px;
+  position: absolute;
+  top: 2px;
+  width: 48px;
+  transition: left ease 0.5s;
+}
+
+button.on {
+  background-color: green;
+}
+
+button.on .pin {
+  left: 80px;
+}
+.traitsDesc {
+  font-size: 11px;
+}
+.Rectangle-Copy-16 {
+  width: 318px;
+  height: 283px;
+  margin: 11.1px 40.6px 22.9px 0px;
+  padding: 89.9px 107.4px 96.1px 113.6px;
+  border-radius: 10px;
+  border: solid 1px #858585;
+  background-image: radial-gradient(circle at 50% 50%, #fff, #dfdfdf 133%);
+}
+@media screen and (max-width: 992px) {
+  .leftContainer {
+    width: 80%;
+  }
+}
+.btn-secondary.active {
+  background-color: blue !important;
+  color: white !important;
+}
+.createCertContainer {
+  padding: 25px;
+  background-color: white;
+  overflow: scroll;
+}
+#trait_type {
+  height: 50px;
+  width: 50%;
+}
+#quantity {
+  width: 25%;
+}
+#location {
+  width: 35%;
+}
+#dimensions {
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
+  width: 100%;
+}
+#dimensions > div {
+  width: 100px;
+  height: 100px;
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  margin-right: 10px;
+}
+/* span {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+} */
+.Line-4 {
+  height: 1px;
+  margin: 0px 0px 39px 0px;
+  border: solid 1px #d3d3d3;
+}
+.dropdown-menu[x-placement^="bottom"],
+.dropdown-menu[x-placement^="left"],
+.dropdown-menu[x-placement^="right"],
+.dropdown-menu[x-placement^="top"] {
+  width: 100%;
+}
+.audioTag {
+  margin-left: 5%;
+}

@@ -1,0 +1,16 @@
+.settingsContainer .navbar {
+  height:100px;
+}
+.settingsContainer {
+   background-color: #e9e9e9;
+   color:black;
+}
+.ecDzaP{
+  padding: 35px;
+}
+.data-table-extensions > .data-table-extensions-filter {
+    float: right;
+}
+.block input[type="file"] {
+  display: block !important;
+}

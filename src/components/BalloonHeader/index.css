@@ -1,0 +1,93 @@
+.logoClass {
+  max-width: 70%;
+}
+.black {
+  color: black;
+}
+.grey {
+  color: gray;
+}
+.white {
+  color: #fff !important;
+  cursor: pointer;
+}
+header {
+  height: 80px;
+}
+
+.navbar {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eee;
+  transition: all 0.7s ease-in;
+}
+
+.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: lightblue;
+}
+.logo img {
+  width: 50px;
+}
+/* .navigation{
+    
+} */
+.content {
+  width: 80%;
+  /* margin:2rem 10% 0 10%; */
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+.box {
+  width: 80%;
+  /* margin:2rem 10% 0 10%; */
+  margin: 5% 10% 5% 10%;
+  height: auto;
+  background-color: white;
+  color: black;
+}
+.nav-link {
+  color: white;
+}
+.dropdown-toggle {
+  color: white;
+}
+ol,
+ul {
+  margin-bottom: 0px;
+}
+.logo {
+  width: 200px;
+  color: black;
+}
+img.logoutClass {
+  width: 24px;
+  height: 27px;
+  /* margin: 4.9px 0 4.9px 30px; */
+  object-fit: contain;
+  cursor: pointer;
+}
+.dropdown-menu {
+  min-width: auto;
+}
+.userIcon {
+  padding: 0% !important;
+  margin: -20%;
+}
+a[type="button"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.imgContainerBox .certImg {
+  width: 50% !important;
+  height: 50%;
+  padding: 0% !important;
+}

@@ -1,0 +1,233 @@
+.divCenter {
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+
+/* login css */
+body {
+  color: white;
+}
+.container {
+  max-width: 100%;
+  padding: 0;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url("../../assets/images/signin.jpeg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.dropShopLogo {
+  display: block;
+  max-height: 40px;
+  max-width: 100px;
+  width: auto;
+  height: auto;
+}
+
+.leftLogo {
+  float: left;
+  max-width: 299px !important;
+  width: 220px !important;
+  height: auto !important;
+}
+.centerMain {
+  position: relative;
+}
+.innerCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.logo {
+  content: url("../../assets/images/storeFront/defaultLogo.png");
+}
+
+.A-quick-way-to-authe {
+  letter-spacing: 0.5px;
+  color: #a2caff;
+  float: left;
+  text-align: left;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+  margin: 12px 0 0;
+}
+.borderRight {
+  border-right: 1px dotted #fff;
+  margin: 145px 0px;
+}
+
+.display-4 {
+  font-size: calc(
+    18px + (40 - 18) * ((100vw - 320px) / (1600 - 320))
+  ) !important;
+}
+.loginHeader {
+  height: 16px;
+  margin: 0 0px 40px 0;
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.57;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+}
+p {
+  /* font-size: calc(
+    11px + (17 - 11) * ((100vw - 320px) / (1600 - 320))
+  ) !important; */
+  color: red;
+}
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+.invalid-feedback {
+  text-align: left;
+  color: #f00 !important;
+}
+/* style icon */
+.inner-addon .fa {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+.left-addon {
+  position: relative;
+}
+/* align icon */
+.left-addon .fa {
+  left: 0px;
+}
+.right-addon .fa {
+  right: 0px;
+}
+.iconClass {
+  position: absolute;
+  left: 0;
+  color: #9b9b9b;
+  margin: 0 0 24px;
+}
+/* add padding  */
+.left-addon input {
+  padding-left: 30px;
+}
+.right-addon input {
+  padding-right: 30px;
+}
+
+.text-muted {
+  color: white !important;
+}
+
+.btn-primary {
+  background-color: #3e4ef1 !important;
+  border-color: #3e4ef1 !important;
+}
+.btn-secondary {
+  background-color: #4d96f6 !important;
+  border-color: #4d96f6 !important;
+}
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #4d96f6 !important;
+  border-color: #4d96f6 !important;
+}
+
+/* .btn-primary{
+  background-color: rgb(242, 242, 242);
+  border-color: rgb(242, 242, 242) !important;
+  color: black;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn-primary:hover{
+  background-color: rgb(173, 172, 172);
+  color: black;
+}
+.btn-secondary{
+  background-color:transparent;
+  border-color: rgb(242, 242, 242);
+}
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #3a3a3a !important;
+    border-color: rgb(242, 242, 242);
+} */
+a {
+  color: #4d96f6;
+  text-decoration: none !important;
+}
+.gc-reset {
+  transform: scale(0.95) !important;
+  -webkit-transform: scale(0.95) !important;
+  transform-origin: 0 0 !important;
+  -webkit-transform-origin: 0 0 !important;
+}
+@media only screen and (min-width: 1400px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 100%;
+  }
+}
+.form-control {
+  height: 50px;
+  margin: 0 0 24px;
+  background-color: #fff;
+
+  border-radius: 10px;
+  border: solid 1px #858585;
+  margin-bottom: 8px;
+}
+.forgotText {
+  height: 16px;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  color: #fff;
+  display: flex;
+  float: left;
+}
+.resetText {
+  height: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.89;
+  letter-spacing: 0.5px;
+  color: #4d96f6;
+  display: flex;
+}
+.btn {
+  height: 50px;
+  text-transform: uppercase;
+  padding: 12px;
+}

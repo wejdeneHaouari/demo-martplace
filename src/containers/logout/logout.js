@@ -6,7 +6,7 @@ const Logout = () => {
     const cookies = new Cookies();
     const history = useHistory();
     useEffect(() => {
-        cookies.remove("balloonUserToken",{ path: '/' });
+        cookies.remove("userToken",{ path: '/' });
         cookies.remove("response",{ path: '/' });
         cookies.remove("userId",{ path: '/' });
         cookies.remove("username",{ path: '/' });

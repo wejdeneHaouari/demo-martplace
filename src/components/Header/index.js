@@ -3,15 +3,10 @@ import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 import "./index.css";
 import styled from "styled-components";
-// import NavOptions from "./content";
-import user from "../../assets/images/user.png";
-import logoutImg from "../../assets/images/logout.png";
-import AileronReguler from "../../assets/fonts/aileron/Aileron-Regular.otf";
-import defaultLogo from "../../assets/images/storeFront/defaultLogo.png";
 import defaultUser from "../../assets/images/defaultUser.png";
 import Modal from "../../components/Modal";
 import useToggle from "../../components/Modal/useToggle";
-import ModalLogo from "../../assets/images/storeFront/logo.png";
+import ModalLogo from "../../assets/images/storeFront/demo.png";
 import { modalStyle } from "../Modal/style";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,7 +15,6 @@ import axios from "axios";
 import Moment from "moment";
 import { env } from "../../constants";
 import { toast } from "react-toastify";
-import ReCaptchaV2 from "react-google-recaptcha";
 import ReCAPTCHA from "react-google-recaptcha";
 
 function Header() {
@@ -33,7 +27,7 @@ function Header() {
   const [inputList, setInputList] = useState([{ name: "", type: "" }]);
   const [checked, setChecked] = React.useState(true);
   const [profilePicture, setProfilePicture] = useState("");
-  let balloonUserToken = cookies.get("balloonUserToken");
+  let userToken = cookies.get("userToken");
   let ownerToken = cookies.get("response");
   const [recaptchaValue, setRecaptchaValue] = useState(null);
   const [collectorrecaptchaValue, setcollectorRecaptchaValue] = useState(null);
@@ -47,9 +41,8 @@ function Header() {
   };
 
   const logout = () => {
-    console.log("logout");
     setLoginShow(true);
-    cookies.remove("balloonUserToken", { path: "/" });
+    cookies.remove("userToken", { path: "/" });
     cookies.remove("response", { path: "/" });
     cookies.remove("userId", { path: "/" });
     cookies.remove("firstname", { path: "/" });
@@ -58,21 +51,9 @@ function Header() {
     cookies.remove("email", { path: "/" });
     cookies.remove("profilePicture", { path: "/" });
     cookies.remove("username", { path: "/" });
-    //console.log(cookies.getAll())
     sessionStorage.clear();
     history.push("/");
-    //window.location.reload();
-    // window.location.reload(true);
-    // if (userRole == 'owner') {
-    //   history.push('/balloon/home');
-    //   window.location.reload(true);
-    // } else if (userRole == 'client') {
-    //   if (window.location.pathname == '/balloon/collection') {
-    //     history.push('/balloon/home');
-    //   } else {
-    //     window.location.reload(true);
-    //   }
-    // }
+
 
     return false;
   };
@@ -213,7 +194,7 @@ function Header() {
 
   useEffect(() => {
     const ownerLoggedIn = cookies.get("response");
-    const userLoggedIn = cookies.get("balloonUserToken");
+    const userLoggedIn = cookies.get("userToken");
     if (!userLoggedIn || !ownerLoggedIn) {
       // history.push("/");
       setLoginShow(true);
@@ -255,7 +236,7 @@ function Header() {
           } else if (res.data.status === true) {
             setProfilePicture(res.data.data.logo);
             //remove cookies old data
-            cookies.remove("balloonUserToken", { path: "/" });
+            cookies.remove("userToken", { path: "/" });
             cookies.remove("response", { path: "/" });
             cookies.remove("userId", { path: "/" });
             cookies.remove("username", { path: "/" });
@@ -266,7 +247,7 @@ function Header() {
 
             // add new cookies
 
-            cookies.set("balloonUserToken", res.data.token, {
+            cookies.set("userToken", res.data.token, {
               path: "/",
               expires: new Date(Moment().add(60, "m").format()),
             });
@@ -359,16 +340,16 @@ function Header() {
             {(userRole == "client" ||
               userRole == "owner" ||
               userRole === undefined) && (
-              <a href="/balloon/home" className="header__marketplace">
+              <a href="/marketplace/home" className="header__marketplace">
                 Marketplace
               </a>
             )}
-            {userRole == "client" && balloonUserToken && (
-              <a href="/balloon/collection" className="header__mycollection">
+            {userRole == "client" && userToken && (
+              <a href="/marketplace/collection" className="header__mycollection">
                 My Collection
               </a>
             )}
-            {!ownerToken && !balloonUserToken && (
+            {!ownerToken && !userToken && (
               <a className="" onClick={() => history.push("/userlogin")}>
                 Login
               </a>
@@ -470,7 +451,7 @@ function Header() {
                 </form>
               </Modal>
             )}
-            {!ownerToken && !balloonUserToken && (
+            {!ownerToken && !userToken && (
               <a className="" onClick={() => history.push("/userSignup")}>
                 Register
               </a>
@@ -600,7 +581,7 @@ function Header() {
               </Modal>
             )}
           </NavLinkWrapper>
-          {(balloonUserToken || ownerToken) && (
+          {(userToken || ownerToken) && (
             <li style={{ width: 60 }}>
               <div className="nav-link">
                 <div className="dropdown">
@@ -622,7 +603,7 @@ function Header() {
                         alt="user"
                       />
                     )}
-                    {balloonUserToken && (
+                    {userToken && (
                       <span className="">
                         {cookies.get("firstname") +
                           " " +
@@ -631,7 +612,7 @@ function Header() {
                     )}
 
                     {userRole === "owner" && (
-                      <a className="dropdown-item" href="/balloonSettings">
+                      <a className="dropdown-item" href="/marketplaceSettings">
                         Store Settings
                       </a>
                     )}
@@ -641,28 +622,18 @@ function Header() {
                       </a>
                     )}
                     {userRole === "owner" && (
-                      <a className="dropdown-item" href="/balloon/owner/wallet">
+                      <a className="dropdown-item" href="/marketplace/owner/wallet">
                         Wallet
                       </a>
                     )}
                     {userRole === "owner" && (
-                      <a className="dropdown-item" href="/balloon/orders">
+                      <a className="dropdown-item" href="/marketplace/orders">
                         Orders
                       </a>
                     )}
                     {userRole === "owner" && (
-                      <a className="dropdown-item" href="/balloon/deliveries">
+                      <a className="dropdown-item" href="/marketplace/deliveries">
                         Items To Deliver
-                      </a>
-                    )}
-                    {userRole === "owner" && (
-                      <a className="dropdown-item" href="/balloon/reports">
-                        Reports
-                      </a>
-                    )}
-                    {userRole === "owner" && (
-                      <a className="dropdown-item" href="/balloon/discountCode">
-                        Discount Code
                       </a>
                     )}
                     {userRole === "client" && (
@@ -673,12 +644,12 @@ function Header() {
                     {userRole === "client" && (
                       <a
                         className="dropdown-item"
-                        href="/balloon/user/passwordUpdate"
+                        href="/marketplace/user/passwordUpdate"
                       >
                         Change Password
                       </a>
                     )}
-                    {(balloonUserToken || ownerToken) && (
+                    {(userToken || ownerToken) && (
                       <li>
                         <a onClick={logout}>
                           <span className="dropdown-item">Logout</span>

@@ -103,7 +103,7 @@ const CreditOrders = () => {
     {
       name: "ID",
       cell: (row, index) => (
-        <a href={"/balloon/collection/viewCert?id=" + row.soldDocumentId}>
+        <a href={"/marketplace/collection/viewCert?id=" + row.soldDocumentId}>
           {" "}
           {row.soldDocumentId}
         </a>

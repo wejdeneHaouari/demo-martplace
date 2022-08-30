@@ -8,14 +8,14 @@ import "./index.css";
 import user from "../../assets/images/user.png";
 import logoutImg from "../../assets/images/logout.png";
 import AileronReguler from "../../assets/fonts/aileron/Aileron-Regular.otf";
-// import defaultLogo from "../../assets/images/defaultLogo.png";
+// import defaultLogo from "../../assets/images/demo.png";
 
 function AdminHeader() {
   const cookies = new Cookies();
   const history = useHistory();
   const userRole = cookies.get("userRole");
   const logout = () => {
-    cookies.remove("balloonUserToken",{ path: '/' });
+    cookies.remove("userToken",{ path: '/' });
     cookies.remove("response",{ path: '/' });
     cookies.remove("userId",{ path: '/' });
     cookies.remove("username",{ path: '/' });
@@ -82,7 +82,7 @@ function AdminHeader() {
                       <a className="dropdown-item" href="/settings">
                         Settings
                       </a>
-                      <a className="dropdown-item" href="/balloonSettings">
+                      <a className="dropdown-item" href="/marketplaceSettings">
                         Store Settings
                       </a>
                     </>

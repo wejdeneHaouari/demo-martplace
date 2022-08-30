@@ -11,7 +11,7 @@ import Modal from "react-modal";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import verifiedlogo from "../../assets/images/verifiedIcon.png"; // with import
-import logoSrc from "../../assets/images/signin.jpeg"; // relative path to image
+import logoSrc from "../../assets/images/backgrnd.png"; // relative path to image
 import openSeaBadge from "../../assets/images/open-sea-badge.png";
 import shareIcon from "../../assets/images/storeFront/share-icon.svg";
 import ListIcon from "../../assets/images/storeFront/list.svg";

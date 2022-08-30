@@ -32,7 +32,7 @@ function Login(props) {
   // useEffect(() => {
   //   const userLoggedIn = cookies.get("response");
   //   if (!userLoggedIn && userRole == 'client') {
-  //     history.push("/balloon/home");
+  //     history.push("/marketplace/home");
   //   }
   // });
   const {
@@ -80,7 +80,7 @@ function Login(props) {
 
 
 
-          cookies.set('balloonUserToken', res.data.token, {
+          cookies.set('userToken', res.data.token, {
             path: '/',
             expires: new Date(Moment().add(60, 'm').format()),
           });
@@ -100,12 +100,10 @@ function Login(props) {
               { path: '/' }
           );
           sessionStorage.setItem('newKey', 1);
-          if (res.data.data.userRole === 'admin') {
-            history.push('/adminDashboard');
-          } else if (res.data.data.userRole === 'owner') {
+           if (res.data.data.userRole === 'owner') {
             history.push('/dashboard');
           } else if (res.data.data.userRole === 'client') {
-            history.push('/balloon/home');
+            history.push('/marketplace/home');
           }
         }
       })

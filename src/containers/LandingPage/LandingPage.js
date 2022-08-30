@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/Common/Footer/Footer";
 import Header from "../../components/Header";
-import { authToken } from "../../constants/apiEndPoints";
 import BannerImage from "./BannerImage";
-import HowItWorksBanner from "./howItWorksBanner";
 import "./LandingPage.css";
-import NFTCarousel from "./NFTCarousel";
-import Logo from "../../assets/images/storeFront/defaultLogo.png";
-import BalloonHeader from "../../components/BalloonHeader";
-import Cookies from "universal-cookie";
 import { env } from "../../constants";
-import AnnoucementBar from "../../components/AnnoucementBar";
-import WhitepaperBanner from "./WhitepaperBanner";
-import Collection from "./Collection";
+
 
 import moment from "moment";
 
@@ -27,21 +19,16 @@ const LandingPage = () => {
 
   const checkIsStoreClosed = () => {
     const d = new Date();
-
-    // const date = new Date();
-    // const offset = date.getTimezoneOffset() * 60000;
     const dx = Date.parse(d);
-
     const date = new Date();
     const offset = date.getTimezoneOffset() * 60000;
-
     let countdownTimestampMsEnding = Date.parse(storeEndingDate) + offset;
+    const isTimeAfter = moment(dx).isAfter(countdownTimestampMsEnding);
 
-    const isTimeAfter = moment(dx).isAfter(countdownTimestampMsEnding); // true
     if (isTimeAfter) {
       setIsStoreClosed(true);
     }
-    console.log("after", isTimeAfter, dx, storeEndingDate);
+
   };
   useEffect(() => {
     checkIsStoreClosed();
@@ -52,7 +39,6 @@ const LandingPage = () => {
   }, [storeEndingDate]);
 
   const getStoreLogoBanner = () => {
-    let cookies = new Cookies();
     let myHeaders = new Headers();
     myHeaders.append(
       "Cookie",
@@ -71,10 +57,8 @@ const LandingPage = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setStoreTitle(result.data.title);
-        setStoreDesc(result.data.banner_details);
-        setStoreBanner(result.data.banner);
+        setStoreDesc(result.data.banner_details || "default store description");
         setStoreEndingDate(result.data.store_ending_date);
         setStoreOpeningDate(result.data.store_opening_date);
       })
@@ -87,12 +71,10 @@ const LandingPage = () => {
 
   return (
     <div className="Wrapper">
-      {/* <AnnoucementBar /> */}
       <Header storeOpen={storeOpen} />
       <BannerImage
         setStoreOpen={setStoreOpen}
         storeOpen={storeOpen}
-        storeBanner={storeBanner}
         storeTitle={storeTitle}
         setStoreTitle={setStoreTitle}
         storeDesc={storeDesc}
@@ -101,10 +83,6 @@ const LandingPage = () => {
         storeOpeningDate={storeOpeningDate}
         isStoreClosed={isStoreClosed}
       />
-      <NFTCarousel />
-      <Collection type="Susan Roth" />
-      <Collection type="Crystal Bowersox"/>
-      <HowItWorksBanner />
       <Footer />
     </div>
   );

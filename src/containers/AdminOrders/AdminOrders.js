@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import Orders from "../../components/Orders/Orders";
 import StoreSettingsForm from "../../components/StoreSettings/StoreSettingsForm";
-import HeaderBanner from "../../components/BalloonHeader/HeaderBanner";
-import BalloonHeader from "../../components/BalloonHeader";
+import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
+import MarketplaceHeader from "../../components/MartplaceHeader";
 import CreditOrders from "../../components/Orders/CreditOrders";
 import CryptoOrders from "../../components/Orders/CryptoOrders";
 
@@ -29,7 +29,7 @@ const AdminOrders = () => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item" key="allCerts">
                   <a
-                    href="/balloonSettings"
+                    href="/marketplaceSettings"
                     className={
                       generalSelected
                         ? "active subHeading nav-link"
@@ -42,7 +42,7 @@ const AdminOrders = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/orders"
+                    href="/marketplace/orders"
                     className={
                       ordersSelected
                         ? "active subHeading nav-link"
@@ -55,7 +55,7 @@ const AdminOrders = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                      href="/balloon/deliveries"
+                      href="/marketplace/deliveries"
                       className={
                         deliverySelected
                             ? "active subHeading nav-link"
@@ -68,7 +68,7 @@ const AdminOrders = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" >
                   <a
-                    href="/balloon/owner/wallet"
+                    href="/marketplace/owner/wallet"
                     className={
                       walletSelected
                         ? "active subHeading nav-link"
@@ -81,7 +81,7 @@ const AdminOrders = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/owner/change-password"
+                    href="/marketplace/owner/change-password"
                     className={
                       changePasswordSelected
                         ? "active subHeading nav-link"

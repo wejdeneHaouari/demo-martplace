@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { APIs } from "../../assets/BalloonAPIEndpoints";
+import { APIs } from "../../assets/MarketplaceAPIEndpoints";
 import UploadLogo from "./UploadLogo";
 import { env } from "../../constants";
 import UploadBanner from "./UploadBanner";

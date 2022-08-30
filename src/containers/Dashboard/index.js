@@ -40,57 +40,17 @@ function Dashboard() {
   const [createCertificate, showCreateCertificate] = useState(false);
   const [selectedId, setSelectedId] = useState();
   const [activateError, setActivateError] = useState(false);
-  const [isAllCertActive, setAllCertActive] = useState(false);
-  const [isMyCertActive, setMyCertActive] = useState(false);
-  const [isUnverifiedCertActive, setUnverifiedCertActive] = useState(false);
-  const [isTransferredCertActive, setTransferredCertActive] = useState(false);
-  const [showVerifiedText, setShowVerifiedText] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [listingPrice, setListingPrice] = useState(26.99);
   const [certsPerPage, setCertsPerPage] = useState(40);
   let inputEl = useRef(null);
 
-  const Toggle = () => setModal(!modal);
+
 
   const [sideDrawerOpen, setSideDrawer] = useState(false);
-
-  const toggleAllCert = () => {
-    setAllCertActive(!isAllCertActive);
-    setMyCertActive(false);
-    setTransferredCertActive(false);
-    setUnverifiedCertActive(false);
-  };
-  const toggleMyCert = () => {
-    setMyCertActive(!isMyCertActive);
-    setAllCertActive(false);
-    setTransferredCertActive(false);
-    setUnverifiedCertActive(false);
-  };
-  const toggleUnverifiedCert = () => {
-    setUnverifiedCertActive(!isUnverifiedCertActive);
-    setAllCertActive(false);
-    setMyCertActive(false);
-    setTransferredCertActive(false);
-  };
-  const toggleTransferredCert = () => {
-    setTransferredCertActive(!isTransferredCertActive);
-    setAllCertActive(false);
-    setMyCertActive(false);
-    setUnverifiedCertActive(false);
-  };
 
   const toggleModal = (t) => {
     setIsOpen(!isOpen);
     setTransferShow(false);
     setFirstNameShow(true);
-  };
-
-  const drawerToggleClickHandler = (show) => {
-    console.log(sideDrawerOpen, !sideDrawerOpen);
-    setSideDrawer(!sideDrawerOpen);
-  };
-  const backdropClickHandler = () => {
-    setSideDrawer(false);
   };
   const handlePageClick = (e) => {
     const selectedPage = e;
@@ -111,7 +71,7 @@ function Dashboard() {
     userId: userId,
   };
   const notify = (type, text) => {
-    if (type === "loginError") {
+    if (type === "loginError" || type === "success") {
       toast(text);
     } else if (type === "dashError") {
       toast(text, {
@@ -136,10 +96,7 @@ function Dashboard() {
       })
       .catch((error) => {
         if (error.response.data.msg === "User is not activated by admin.") {
-          // notify(
-          //   "dashError",
-          //   `Hi ${firstName}, You need to verify your authenticity in order to mint your NFT certificate in Blockchain, please click here to submit your request`,
-          // );
+
           setActivateError(true);
         }
       });
@@ -168,7 +125,6 @@ function Dashboard() {
     } else if (checkKey === "4") {
       unverifiedCerts(currentPage);
     } else {
-      // window.location.reload();
       window.history.replaceState(null, null, "#");
       allCerts(currentPage);
     }
@@ -331,57 +287,11 @@ function Dashboard() {
       });
   };
 
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
 
   const searchCertificates = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  // const searchCerts = (event) => {
-  //   //  e.preventDefault();
-  //   setSearchTerm(event.target.value);
-  //   if (searchTerm.length > 0) {
-  //     const data = {
-  //       userId: userId,
-  //       searchFor: searchTerm,
-  //     };
-  //     axios
-  //       .post(env.apiUrl + `api/users/searchingFiles`, data, headers)
-  //       .then((res) => {
-  //         if (res.data.data.length > 0) {
-  //           setResultArray(res.data.data);
-  //           setTotalRecords(res.data.totalCert);
-  //         } else {
-  //           notify('loginError', 'No Result');
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         if (error.response) {
-  //           if (error.response.status === 403) {
-  //             notify(
-  //               'loginError',
-  //               'Token is expired. Please try to login again'
-  //             );
-  //             history.push('/');
-  //             cookies.remove('response');
-  //             sessionStorage.clear();
-  //           } else {
-  //             notify('loginError', error.response.data.msg);
-  //           }
-  //         } else if (error.request) {
-  //           // The request was made but no response was received
-  //           notify('loginError', error.message);
-  //         } else {
-  //           // Something happened in setting up the request that triggered an Error
-  //           notify('loginError', error.message);
-  //         }
-  //       });
-  //   } else {
-  //     allCerts();
-  //   }
-  // };
   const handleCreateCert = () => {
     history.push("./createCert");
   };
@@ -398,9 +308,8 @@ function Dashboard() {
         headers
       )
       .then((res) => {
-        notify("loginError", res.data.msg);
+        notify("success", res.data.msg);
         callFunOnKey();
-        // window.location.reload();
       })
       .catch((error) => {
         if (error.response) {
@@ -423,8 +332,6 @@ function Dashboard() {
   };
 
   const verifyCert = (t) => {
-    // const certificate = result_array.find((item) => item._id === t._id);
-    // console.log('certyy', certificate);
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -435,21 +342,7 @@ function Dashboard() {
             </div>
 
             <div className="cf__card--top">
-              {t.imageName.split(".").pop() === ("mp3" || "mp4") ? (
-                <div className="cf__card-flyer">
-                  <div className="cf__text-box">
-                    <div className="cf__image-box ">
-                      <a href={`./viewCert?id=${t._id}`}>
-                        <img
-                          className="cf__card-img-top"
-                          src={`${env.uploadImgLink}${t.thumbNail}`}
-                          alt="certifictae"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ) : (
+
                 <div className="cf__card-flyer">
                   <div className="tcf__ext-box">
                     <div className="icf__mage-box ">
@@ -463,7 +356,6 @@ function Dashboard() {
                     </div>
                   </div>
                 </div>
-              )}
 
               <div className="cf__text-container">
                 <div className="">
@@ -498,26 +390,6 @@ function Dashboard() {
                 CANCEL
               </button>
             </div>
-            {/* {showVerifiedText ? (
-              <div className='cf__verified'>
-                <div className='d-flex align-items-center'>
-                  <img
-                    src={checkmarkIcon}
-                    alt='nft verified'
-                    style={{ width: '24px', marginRight: '5px' }}
-                  />
-                  <p className='m-0 verified__text'>Verification Request Submitted</p>
-                </div>
-                <span className='m-0'>
-                  You have successfully submitted an item verification request.{' '}
-                  <br></br>
-                  We will process your request and verify your item as soon as
-                  possible.{' '}
-                </span>
-              </div>
-            ) : (
-              ''
-            )} */}
           </div>
         );
       },
@@ -641,12 +513,10 @@ function Dashboard() {
       },
     });
   };
-
-  //Share Certificate
   const shareCert = (t) => {
     // e.preventDefault();
     let urlPrefix = window.location.href.split(".com")[0];
-    const url = `${urlPrefix}.com/balloon/viewCert?id=${t._id}`;
+    const url = `${urlPrefix}.com/marketplace/viewCert?id=${t._id}`;
     const titles = `${url}`;
     const u = `${env.uploadImgLink}${t.imageName}`;
     const openFb = (e) => {
@@ -707,7 +577,7 @@ function Dashboard() {
     axios
       .get(
         env.apiUrl +
-          `api/users/find-email?username=${env.username}&email=${data.email}`,
+          `api/users/find-email?userId=${userId}&email=${data.email}`,
         headers
       )
       .then((res) => {
@@ -742,7 +612,7 @@ function Dashboard() {
     axios
       .get(
         env.apiUrl +
-          `api/users/checkSecondTransfer?username=${env.username}&imageId=${p}`,
+          `api/users/checkSecondTransfer?userId=${userId}&imageId=${p}`,
         checkHeader
       )
       .then((res) => {
@@ -1274,8 +1144,7 @@ function Dashboard() {
           <h2 className="activateerror red">
             {" "}
             Hi {userName}, You need to verify your authenticity in order to mint
-            your NFT certificate in Blockchain, please{" "}
-            <a href="/uploadKyc">click here</a> to submit your request.
+            your NFT certificate in Blockchain, Please kindly send an email to info@app-scoop.com to activate your account on Chaincerts for minting
           </h2>
         )}
         {result_array && renderData()}

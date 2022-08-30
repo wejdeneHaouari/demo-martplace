@@ -44,8 +44,8 @@ import {
   argon2id,
   bcrypt,
 } from "hash-wasm";
-import BalloonHeader from "../../components/BalloonHeader";
-import HeaderBanner from "../../components/BalloonHeader/HeaderBanner";
+import MarketplaceHeader from "../../components/MartplaceHeader";
+import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import Modal from "../../components/Modal";
 import useToggle from "../../components/Modal/useToggle";
 const sha256Algo = createSHA256();

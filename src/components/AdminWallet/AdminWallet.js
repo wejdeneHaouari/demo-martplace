@@ -51,7 +51,7 @@ const AdminWallet = () => {
       .catch((error) => {
         if (error.response) {
           if (error.response.status === 403) {
-            cookies.remove("balloonUserToken", { path: "/" });
+            cookies.remove("userToken", { path: "/" });
             cookies.remove("response", { path: "/" });
             cookies.remove("userId", { path: "/" });
             cookies.remove("firstname", { path: "/" });

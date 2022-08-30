@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import metamaskSVG from '../../assets/images/metamask.svg';
 import Cookies from 'universal-cookie';
 import { env } from '../../constants';
-import { APIs } from '../../assets/BalloonAPIEndpoints';
+import { APIs } from '../../assets/MarketplaceAPIEndpoints';
 import { Connect } from '../MetaMask/metamask-auth';
 
 import MetaMaskAuth from '../MetaMask/metamask-auth';
@@ -35,7 +35,7 @@ const UserProfile = ({
 }) => {
   const cookies = new Cookies();
   const history = useHistory();
-  const authToken = 'Bearer ' + cookies.get('balloonUserToken');
+  const authToken = 'Bearer ' + cookies.get('userToken');
   const [loader, setLoader] = useState(false);
   const [metamask, setMetamask] = useState(false);
   const [showUpdateEmail, setShowUpdateEmail] = useState(false);

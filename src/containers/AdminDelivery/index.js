@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import HeaderBanner from "../../components/BalloonHeader/HeaderBanner";
+import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import CreditOrders from "../../components/Orders/CreditOrders";
 import CryptoOrders from "../../components/Orders/CryptoOrders";
 import React, {useState} from "react";
@@ -28,7 +28,7 @@ const Delivery = () => {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item" key="allCerts">
                                     <a
-                                        href="/balloonSettings"
+                                        href="/marketplaceSettings"
                                         className={
                                             generalSelected
                                                 ? "active subHeading nav-link"
@@ -41,7 +41,7 @@ const Delivery = () => {
                                 <div className="Line-Copy-6"></div>
                                 <li className="nav-item" key="myCert">
                                     <a
-                                        href="/balloon/orders"
+                                        href="/marketplace/orders"
                                         className={
                                             ordersSelected
                                                 ? "active subHeading nav-link"
@@ -54,7 +54,7 @@ const Delivery = () => {
                                 <div className="Line-Copy-6"></div>
                                 <li className="nav-item" key="myCert">
                                     <a
-                                        href="/balloon/deliveries"
+                                        href="/marketplace/deliveries"
                                         className={
                                             deliverySelected
                                                 ? "active subHeading nav-link"
@@ -67,7 +67,7 @@ const Delivery = () => {
                                 <div className="Line-Copy-6"></div>
                                 <li className="nav-item" >
                                     <a
-                                        href="/balloon/owner/wallet"
+                                        href="/marketplace/owner/wallet"
                                         className={
                                             walletSelected
                                                 ? "active subHeading nav-link"
@@ -80,7 +80,7 @@ const Delivery = () => {
                                 <div className="Line-Copy-6"></div>
                                 <li className="nav-item" key="myCert">
                                     <a
-                                        href="/balloon/owner/change-password"
+                                        href="/marketplace/owner/change-password"
                                         className={
                                             changePasswordSelected
                                                 ? "active subHeading nav-link"

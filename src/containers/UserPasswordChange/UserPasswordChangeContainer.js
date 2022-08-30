@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import HeaderBanner from "../../components/BalloonHeader/HeaderBanner";
+import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import Cookies from "universal-cookie";
 import { env } from "../../constants";
-import { APIs } from "../../assets/BalloonAPIEndpoints";
+import { APIs } from "../../assets/MarketplaceAPIEndpoints";
 import UserUpdatePasswordForm from "../../components/UserUpdatePasswordForm/UserUpdatePasswordForm";
 import { toast } from "react-toastify";
 import {userID} from "../../constants/apiEndPoints";
@@ -21,7 +21,7 @@ const UserPasswordChangeContainer = () => {
     false
   );
   const cookies = new Cookies();
-  const authToken = "Bearer " + cookies.get("balloonUserToken");
+  const authToken = "Bearer " + cookies.get("userToken");
   const userId = cookies.get("userId");
 
   const handleProfileNavClick = () => {
@@ -69,7 +69,7 @@ const UserPasswordChangeContainer = () => {
 
   return (
     <Wrapper>
-      <Header balloonStore={true} />
+      <Header marketplaceStore={true} />
       <HeaderBanner type="userProfile" />
       <SettingsContainer>
         <nav className="navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-light secondHeader">
@@ -92,7 +92,7 @@ const UserPasswordChangeContainer = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/user/passwordUpdate"
+                    href="/marketplace/user/passwordUpdate"
                     className={
                       passwordSelected
                         ? "active subHeading nav-link"

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import HeaderBanner from "../../components/BalloonHeader/HeaderBanner";
+import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import Cookies from "universal-cookie";
 import { env } from "../../constants";
-import { APIs } from "../../assets/BalloonAPIEndpoints";
+import { APIs } from "../../assets/MarketplaceAPIEndpoints";
 import axios from "axios";
 import { headers, userID, userIDObj } from "../../constants/apiEndPoints";
 import { toast } from "react-toastify";
@@ -18,7 +18,7 @@ const UserProfileContainer = () => {
   const [newLastName, setLastName] = useState("");
   const cookies = new Cookies();
   const userId = cookies.get("userId");
-  const authToken = cookies.get("balloonUserToken");
+  const authToken = cookies.get("userToken");
   const firstname = cookies.get("firstname");
   const lastname = cookies.get("lastname");
   const [profileFileName, setProfleFileName] = useState("Upload");
@@ -191,7 +191,7 @@ const UserProfileContainer = () => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item" key="allCerts">
                   <a
-                    href="/balloonSettings"
+                    href="/marketplaceSettings"
                     className={
                       profileSelected
                         ? "active subHeading nav-link"
@@ -205,7 +205,7 @@ const UserProfileContainer = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/user/passwordUpdate"
+                    href="/marketplace/user/passwordUpdate"
                     className={
                       passwordSelected
                         ? "active subHeading nav-link"

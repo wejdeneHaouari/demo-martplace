@@ -48,7 +48,7 @@ const BannerImage = ({
                   "ddd. MMM DD, YYYY,  h:mm a"
                 )}
               </p>
-              <a href="/balloon/home">
+              <a href="/marketplace/home">
                 <button>Collect Now</button>
               </a>
             </div>
@@ -73,12 +73,12 @@ export default BannerImage;
 const BannerImageContainer = styled.div`
   width: 100%;
   height: 80%;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(70, 70, 75, 0.56),
-      rgba(18, 18, 25, 0.71)
-    ),
-    url(${(props) => "https://" + props.storeBanner});
+ background-image: linear-gradient(
+    to right,
+    #0f1133,
+    #0b0d15 100%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

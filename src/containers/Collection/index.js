@@ -815,8 +815,7 @@ function Collection() {
           <h2 className="activateerror red">
             {" "}
             Hi {userName}, You need to verify your authenticity in order to mint
-            your NFT certificate in Blockchain, please{" "}
-            <a href="/uploadKyc">click here</a> to submit your request.
+            your NFT certificate in Blockchain, Please kindly send an email to info@app-scoop.com to activate your account on Chaincerts for minting
           </h2>
         )}
         {renderData()}

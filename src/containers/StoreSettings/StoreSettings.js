@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Orders from "../../components/Orders/Orders";
-import HeaderBanner from "../../components/BalloonHeader/HeaderBanner";
+import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import { env } from "../../constants";
-import { APIs } from "../../assets/BalloonAPIEndpoints";
+import { APIs } from "../../assets/MarketplaceAPIEndpoints";
 import Cookies from "universal-cookie";
 import Moment from "moment";
 import { toast } from "react-toastify";
@@ -50,59 +50,14 @@ const StoreSettings = () => {
     setPromoCode(e.target.value);
   };
   const firstName = cookies.get("firstname");
-  const discountCodeData = {
-    discountPercentage: promo,
-    expiryDate: couponExpiryDate,
-    discountName: promoCode,
-    userId: userId,
-  };
+
   const headers = {
     headers: {
       "content-type": "application/json",
       Authorization: authToken,
     },
   };
-  const genratePromo = (e) => {
-    if (promoCode !== "") {
-      if (promo !== "") {
-        axios
-          .post(
-            env.apiUrl + `api/users/genDiscountCode`,
-            discountCodeData,
-            headers
-          )
-          .then((res) => {
-            if (res.data.status === true) {
-              notify("loginError", "Discount Code Generated Successfully");
-            } else if (res.data.status === false) {
-              notify("loginError", res.data.msg);
-            } else if (res.data.status === "Fail") {
-              const errCode = res.data.err.code;
-              notify("loginError", "Error: " + errCode);
-            }
-          })
-          .catch((error) => {
-            console.log(error.response.data.msg);
-            if (error.response) {
-              if (error.response.status === 403) {
-                cookies.remove("response");
-                notify(
-                  "loginError",
-                  "Token is expired. Please try to login again"
-                );
-              } else {
-                const msg = error.response.data.msg;
-                notify("loginError", error.response.data.msg);
-              }
-            }
-          });
-      } else {
-        notify("loginError", "Please enter Discount percentage");
-      }
-    } else {
-      notify("loginError", "Please enter Discount Code");
-    }
-  };
+
   const notify = (type, text) => {
     if (type === "loginError") {
       toast(text);
@@ -228,7 +183,7 @@ const StoreSettings = () => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item" key="allCerts">
                   <a
-                    href="/balloonSettings"
+                    href="/marketplaceSettings"
                     className={
                       generalSelected
                         ? "active subHeading nav-link"
@@ -241,7 +196,7 @@ const StoreSettings = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/orders"
+                    href="/marketplace/orders"
                     className={
                       ordersSelected
                         ? "active subHeading nav-link"
@@ -254,7 +209,7 @@ const StoreSettings = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/deliveries"
+                    href="/marketplace/deliveries"
                     className={
                       deliverySelected
                         ? "active subHeading nav-link"
@@ -267,7 +222,7 @@ const StoreSettings = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/owner/wallet"
+                    href="/marketplace/owner/wallet"
                     className={
                       walletSelected
                         ? "active subHeading nav-link"
@@ -280,7 +235,7 @@ const StoreSettings = () => {
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
-                    href="/balloon/owner/change-password"
+                    href="/marketplace/owner/change-password"
                     className={
                       changePasswordSelected
                         ? "active subHeading nav-link"
@@ -395,55 +350,6 @@ const StoreSettings = () => {
                         "ddd. MMM DD, YYYY,  h:mm a"
                       )}
                     </p>
-                  </LabelInputWraper>
-                </div>
-                <div className="d-flex">
-                  <LabelInputWraper>
-                    <label>Discount Percentage</label>
-                    <input
-                      type="number"
-                      placeholder="Discount Percentage"
-                      className="form-control"
-                      onChange={handlePromo}
-                      value={promo}
-                    />
-                  </LabelInputWraper>
-                  <LabelInputWraper>
-                    <label>Discount code Expiry Date</label>
-                    <input
-                      className="form-control datetime"
-                      type="datetime-local"
-                      onChange={(e) => {
-                        setCouponExpiryDate(e.target.value);
-                        setCouponExpiryDisplay(e.target.value);
-                      }}
-                    ></input>
-                    <p>
-                      {Moment(couponExpiryDisplay).format(
-                        "ddd. MMM DD, YYYY,  h:mm a"
-                      )}
-                    </p>
-                  </LabelInputWraper>
-                </div>
-                <div className="d-flex">
-                  <LabelInputWraper>
-                    <label>Discount Code</label>
-                    <input
-                      type="text"
-                      placeholder="Enter Promo Code"
-                      className="form-control"
-                      onChange={handlePromoCode}
-                      value={promoCode}
-                    />
-                  </LabelInputWraper>
-                  <LabelInputWraper>
-                    <button
-                      type="button"
-                      className="btn btn-primary w-auto"
-                      onClick={() => genratePromo()}
-                    >
-                      Generate Discount Code
-                    </button>
                   </LabelInputWraper>
                 </div>
               </SettingsForm>

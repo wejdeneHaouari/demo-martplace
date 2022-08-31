@@ -609,80 +609,38 @@ function Dashboard() {
         "content-type": "application/json",
       },
     };
-    axios
-      .get(
-        env.apiUrl +
-          `api/users/checkSecondTransfer?userId=${userId}&imageId=${p}`,
-        checkHeader
-      )
-      .then((res) => {
-        setSignUpTransferShow(false);
-        setshowTransferButton(true);
-        if (password) {
-          if (res.data.msg === "sellSafetransferfrom") {
-            axios
-              .post(
-                env.apiUrl + "api/users/sellSafetransferfrom",
-                transferData,
-                headers
-              )
-              .then((res) => {
-                notify("loginError", res.data.msg);
-                // setTransferShow(true);
-                setFirstNameShow(true);
-                setSearchShow(false);
-                callFunOnKey();
-                // window.location.reload();
-              })
-              .catch((err) => {
-                if (err.response) {
-                  notify("loginError", err.response.data.msg);
-                  if (err.response.data.status === false) {
-                    if (
-                      err.response.data.msg ===
-                      "Wallet Balance Is Less Than To Transaction Fee"
-                    ) {
-                      history.push("/wallet");
-                    }
-                  }
+    if (password) {
+      axios
+          .post(
+              env.apiUrl + "api/users/transferFilewithsqs",
+              transferData,
+              headers
+          )
+          .then((res) => {
+            notify("loginError", res.data.msg);
+            // setTransferShow(true);
+            setFirstNameShow(false);
+            setSearchShow(false);
+            callFunOnKey();
+            // window.location.reload();
+          })
+          .catch((err) => {
+            if (err.response) {
+              notify("loginError", err.response.data.msg);
+              if (err.response.data.status === false) {
+                if (
+                    err.response.data.msg ===
+                    "User is not owner of the Certificate."
+                ) {
                 }
-              });
-          } else if (res.data.msg === "transferfile") {
-            axios
-              .post(
-                env.apiUrl + "api/users/transferFilewithsqs",
-                transferData,
-                headers
-              )
-              .then((res) => {
-                notify("loginError", res.data.msg);
-                // setTransferShow(true);
-                setFirstNameShow(false);
-                setSearchShow(false);
-                callFunOnKey();
-                // window.location.reload();
-              })
-              .catch((err) => {
-                if (err.response) {
-                  notify("loginError", err.response.data.msg);
-                  if (err.response.data.status === false) {
-                    if (
-                      err.response.data.msg ===
-                      "User is not owner of the Certificate."
-                    ) {
-                    }
-                  }
-                }
-              });
-          } else {
-          }
-        } else {
-          notify("loginError", "Please provide login password");
-        }
-      })
-      .catch((err) => {
-        notify("loginError", err.response.data.msg);
-      });
+              }
+            }
+          });
+
+    } else {
+      notify("loginError", "Please provide login password");
+    }
+
   };
   const signUp = (data) => {
     const signnupData = {
@@ -885,26 +843,7 @@ function Dashboard() {
                               <h3>Transfer Certificate</h3>
                               <form onSubmit={handleSubmit(onSubmit)}>
                                 <>
-                                  {firstNameShow && (
-                                    <div className="form-group mb-4">
-                                      <input
-                                        name="firstName"
-                                        type="text"
-                                        placeholder="First Name"
-                                        value={firstName}
-                                        onChange={(e) =>
-                                          setFirstName(e.target.value)
-                                        }
-                                        className={`form-control ${
-                                          errors.firstName ? "is-invalid" : ""
-                                        }`}
-                                      />
 
-                                      <div className="invalid-feedback">
-                                        {errors.firstName?.message}
-                                      </div>
-                                    </div>
-                                  )}
                                   <div className="form-group mb-4">
                                     <input
                                       name="email"

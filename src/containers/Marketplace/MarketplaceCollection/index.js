@@ -232,7 +232,7 @@ function MarketplaceCollection() {
                               <a href={`./collection/viewCert?id=${t._id}`}>
                                 <img
                                   className="card-img-top img-fluid"
-                                  src={`${env.uploadImgLink}${t.thumbNail}`}
+                                  src={`${env.uploadImgLink}${t.imageName}`}
                                   alt="certificate"
                                 />
                               </a>

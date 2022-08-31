@@ -21,13 +21,7 @@ function Signup() {
      };
      const cookies = new Cookies();
      const [recaptchaValue, setRecaptchaValue] = useState(null);
-     
-     function emptyStringToNull(value, originalValue) {
-       if (typeof originalValue === "string" && originalValue === "") {
-         return null;
-       }
-       return value;
-     }
+
      const validationSchema = Yup.object().shape({
        firstName: Yup.string().required("First Name is required"),
        lastName: Yup.string().required("Last Name is required"),
@@ -67,8 +61,7 @@ function Signup() {
          },
        };
          data.userRole = "client";
-        //  data.username == data.firstName + " " + data.lastName;
-    //    data.orgName = data.firstName + " " + data.lastName;
+
        delete data.confirmPassword;
        if (recaptchaValue) {
          axios
@@ -95,7 +88,6 @@ function Signup() {
           <div className="col-sm-6 d-none centerMain d-sm-flex borderRight">
             <div className="innerCenter">
               <img className="logo leftLogo" alt="logo" />
-              {/* <h2 className="display-4 loginHeader">Login </h2> */}
             </div>
           </div>
           <div className="col-sm-6">

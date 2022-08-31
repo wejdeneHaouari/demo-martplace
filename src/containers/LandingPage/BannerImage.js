@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Header from "../../components/Header";
 import CountdownTimer from "../../components/CountDownTimer/index";
 import Moment from "moment";
 
@@ -24,7 +23,6 @@ const BannerImage = ({
     }, 1800);
   }, [loading]);
 
-  let countdownTimestampMsOpening = Date.parse(storeOpeningDate) + offset;
   let countdownTimestampMsEnding = Date.parse(storeEndingDate) + offset;
 
   return (

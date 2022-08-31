@@ -1,10 +1,8 @@
-import Cookies from "universal-cookie";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { env } from "../../constants";
 import { headers, userID, userIDObj } from "../../constants/apiEndPoints";
 import Moment from "moment";
-import DataTableExtensions from "react-data-table-component-extensions";
 import DataTable from "react-data-table-component";
 import "./index.css";
 import Dropdowntriangle from "../../assets/images/storeFront/dropdownTriangle.svg";
@@ -12,7 +10,6 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 const CryptoOrders = () => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +18,7 @@ const CryptoOrders = () => {
   const [itemIdIsChecked, setItemIdIsChecked] = useState(false);
   const [itemNameIsChecked, setItemNameIsChecked] = useState(false);
   const [buyerEmailIsChecked, setBuyerEmailIsChecked] = useState(false);
+
   const fetchCryptoOrders = async (currentPage) => {
     const response = await axios.get(
       env.apiUrl +
@@ -166,10 +164,7 @@ const CryptoOrders = () => {
     }
   };
 
-  const tableData = {
-    columns,
-    data,
-  };
+
 
   return (
     <>
@@ -258,7 +253,6 @@ const CryptoOrders = () => {
             onChangeRowsPerPage={handlePerRowsChange}
             onChangePage={handlePageChange}
             noDataComponent=""
-            // selectableRows
           />
         </div>
       </div>

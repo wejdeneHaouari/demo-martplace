@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import metamaskSVG from '../../assets/images/metamask.svg';
 import Cookies from 'universal-cookie';
 import { env } from '../../constants';
-import { APIs } from '../../assets/MarketplaceAPIEndpoints';
-import { Connect } from '../MetaMask/metamask-auth';
 
-import MetaMaskAuth from '../MetaMask/metamask-auth';
 import axios from 'axios';
 import { headers, userID } from '../../constants/apiEndPoints';
 
@@ -16,11 +13,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
-  IconButton,
-  Modal,
-  Typography,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
@@ -29,15 +22,12 @@ const UserProfile = ({
   setFirstName,
   setLastName,
   profileFileName,
-  profilePicture,
   setProfilePicture,
   setProfleFileName,
 }) => {
   const cookies = new Cookies();
   const history = useHistory();
-  const authToken = 'Bearer ' + cookies.get('userToken');
   const [loader, setLoader] = useState(false);
-  const [metamask, setMetamask] = useState(false);
   const [showUpdateEmail, setShowUpdateEmail] = useState(false);
   const [metaPassword, setMetaPassword] = useState('');
   const [privateKey, setPrivateKey] = useState('');
@@ -59,9 +49,7 @@ const UserProfile = ({
     setProfilePicture(e.target.files[0]);
   };
 
-  const handleMetaMaskClick = () => {
-    setMetamask(true);
-  };
+
 
   const exportPrivateKey = () => {
     const data = {
@@ -102,8 +90,7 @@ const UserProfile = ({
           notify('loginError', res.data.msg);
 
           history.push('/logout');
-          // cookies.remove("email",{ path: '/' });
-          // cookies.set("email", email,{ path: '/' });
+
         }
       })
       .catch((err) => {
@@ -117,10 +104,7 @@ const UserProfile = ({
   return (
     <Wrapper>
       <LeftContainer>
-        {/*<UsernameWrapper>*/}
-        {/*  <p>Username</p>*/}
-        {/*  <p className="username">test</p>*/}
-        {/*</UsernameWrapper>*/}
+
         <SettingsForm id="storeSettingsForm">
           <div className="form-group">
             <LabelInputWraper>
@@ -214,10 +198,7 @@ const UserProfile = ({
             </label>
           </div>
         </FileUploadWrapper>
-        {/* <FileUploadWrapper>
-          <StoreLogoLabel>Connect to Metamask</StoreLogoLabel>
-          <MetaMaskAuth />
-        </FileUploadWrapper> */}
+
         <FileUploadWrapper>
           <StoreLogoLabel>
             Export the Chaincert Blockchain Private Key{" "}
@@ -257,9 +238,7 @@ const UserProfile = ({
               </Box>
             </DialogContent>
             <DialogActions>
-              {/*<ButtonStyle>*/}
-              {/*  <Button onClick={() => {navigator.clipboard.writeText(privateKey)}}>Copy</Button>*/}
-              {/*</ButtonStyle>*/}
+
               <ButtonStyle>
                 <Button onClick={handleClose}>Close</Button>
               </ButtonStyle>

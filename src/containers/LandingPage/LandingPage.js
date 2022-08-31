@@ -11,7 +11,6 @@ import moment from "moment";
 const LandingPage = () => {
   const [storeTitle, setStoreTitle] = useState("");
   const [storeDesc, setStoreDesc] = useState("");
-  const [storeBanner, setStoreBanner] = useState("");
   const [storeEndingDate, setStoreEndingDate] = useState("");
   const [storeOpeningDate, setStoreOpeningDate] = useState("");
   const [storeOpen, setStoreOpen] = useState(false);
@@ -40,10 +39,6 @@ const LandingPage = () => {
 
   const getStoreLogoBanner = () => {
     let myHeaders = new Headers();
-    myHeaders.append(
-      "Cookie",
-      "connect.sid=s%3AdNCAgjeHH2wJwWN7qh9Ar3M0lExpAhtB.P4OCs94J%2FTGPs63CXpBD947wAfhVZduWnrvZBxXQYYk"
-    );
 
     let requestOptions = {
       method: "GET",

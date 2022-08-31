@@ -4,19 +4,17 @@ import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 import Header from "../../components/Header";
 import { env } from "../../constants";
-import Moment from "moment";
 import Pagination from "reactjs-hooks-pagination";
 import "./index.css";
 import { toast } from "react-toastify";
-import { confirmAlert } from "react-confirm-alert"; // Import
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import shareIcon from "../../assets/images/storeFront/share-icon.svg";
 import checkmarkIcon from "../../assets/images/storeFront/checkmark-copy.svg";
-import Dropdowntriangle from "../../assets/images/storeFront/dropdownTriangle.svg";
 import styled from "styled-components";
 import { userID } from "../../constants/apiEndPoints";
 
@@ -158,7 +156,7 @@ function Dashboard() {
           console.log(error);
           if (error.response.status === 403) {
             notify("loginError", "Token is expired. Please try to login again");
-            history.push("/login");
+            history.push("/userLogin");
             cookies.remove("response");
             sessionStorage.clear();
           } else {
@@ -604,11 +602,7 @@ function Dashboard() {
       receiverId: receiverId,
       imageId: p,
     };
-    const checkHeader = {
-      headers: {
-        "content-type": "application/json",
-      },
-    };
+
     if (password) {
       axios
           .post(
@@ -666,15 +660,13 @@ function Dashboard() {
       })
       .catch((err) => {
         if (err.response) {
-          // notify("loginError", err.response.data.msg);
+          notify("loginError", err.response.data.msg);
         }
       });
   };
 
-  let backdrop;
   if (sideDrawerOpen) {
     console.log(sideDrawerOpen);
-    // backdrop = <Backdrop close={backdropClickHandler}/>;
   }
 
   const filteredItems = result_array.filter((item) =>
@@ -1047,38 +1039,6 @@ function Dashboard() {
             </div>
           </div>
         </nav>
-        {/* <div
-          className='d-flex align-items-center dashboard__sort'
-          style={{ marginLeft: '50px', marginTop: '15px' }}
-        >
-          <div class='dropdown dropdown__sortby d-flex align-items-center'>
-            <p className='m-0 mr-3 dashboard__sort'>Sort By</p>
-            <DropDown
-              class='btn btn-secondary dropdown-toggle'
-              type='button'
-              id='dropdownMenuButton'
-              data-toggle='dropdown'
-              aria-haspopup='true'
-              aria-expanded='false'
-            >
-              <p>Last Updated</p>{' '}
-              <span>
-                {' '}
-                <DropDownTriangle src={Dropdowntriangle} />
-              </span>
-            </DropDown>
-            <div
-              class='dropdown-menu flex-column'
-              aria-labelledby='dropdownMenuButton'
-            >
-              <div className='d-flex flex-column'>
-                <button>Last Updated</button>
-                <button>Newly Created</button>
-                <p>Work in Progress</p>
-              </div>
-            </div>
-          </div>
-        </div> */}
         {activateError && (
           <h2 className="activateerror red">
             {" "}
@@ -1094,7 +1054,6 @@ function Dashboard() {
               pageLimit={certsPerPage}
               pageRangeDisplayed={1}
               onChangePage={handlePageClick}
-              // activePage={currentPage}
             />
           </div>
         )}
@@ -1105,49 +1064,3 @@ function Dashboard() {
 
 export default Dashboard;
 
-const DropDown = styled.button`
-  height: 30px;
-  width: 200px;
-
-  padding: 5px 11px 5px 8px;
-  border-radius: 3px;
-  border: solid 1px #dedede;
-  background-color: #fff;
-  font-size: 14px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-  margin-right: 5px;
-  align-items: center;
-  transition: none;
-  p {
-    color: black;
-    margin: 0;
-    letter-spacing: 1px;
-  }
-  span {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  &:focus {
-    outline: none;
-    border: 1.6px solid black;
-  }
-  @media (max-width: 1200px) {
-    width: 150px;
-  }
-  @media (max-width: 992px) {
-    width: 120px;
-  }
-  @media (max-width: 800px) {
-    width: 295px;
-  }
-`;
-
-const DropDownTriangle = styled.img`
-  width: 10px;
-`;

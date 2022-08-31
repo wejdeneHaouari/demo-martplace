@@ -45,9 +45,7 @@ export default function MetaMaskAuth({ onAddressChanged }) {
     checkIfWalletIsConnected(setUserAddress);
   }, []);
 
-  // useEffect(() => {
-  //   onAddressChanged(userAddress);
-  // }, [userAddress]);
+
 
   return userAddress ? (
     <div>

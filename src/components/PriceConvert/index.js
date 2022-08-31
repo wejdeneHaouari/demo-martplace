@@ -5,19 +5,14 @@ import EthLogo from '../../assets/images/storeFront/ethLogo.svg';
 const PriceConverter = ({ value, fontFamily, size, color }) => {
   const [ethPrice, setEthPrice] = useState(null);
 
-  // const exchangeRate = () => {
     fetch("https://api.coinbase.com/v2/exchange-rates?currency=USD")
       .then((response) => response.json())
       .then((data) => {
         const usdToEthRate = (data.data.rates.ETH * value) / 100;
         setEthPrice(usdToEthRate.toFixed(6));
 
-        // console.log('cd', usdToEthRate);
       });
-  // };
-  // useEffect(() => {
-  //   exchangeRate();
-  // }, []);
+
 
   return (
     <>

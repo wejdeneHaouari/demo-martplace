@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 import Moment from "moment";
-import { renderToStream } from "@react-pdf/renderer";
 
 toast.configure();
 function Signin(props) {
@@ -29,12 +28,6 @@ function Signin(props) {
     recaptcha: Yup.bool().oneOf([true], "Recaptcha is required"),
   });
 
-  // useEffect(() => {
-  //   const userLoggedIn = cookies.get("response");
-  //   if (!userLoggedIn && userRole == 'client') {
-  //     history.push("/marketplace/home");
-  //   }
-  // });
   const {
     register,
     handleSubmit,
@@ -123,7 +116,6 @@ function Signin(props) {
         <div className="col-sm-6 d-none centerMain d-sm-flex borderRight">
           <div className="innerCenter">
             <img className="logo leftLogo" alt="logo" />
-            {/* <h2 className="display-4 loginHeader">Login </h2> */}
           </div>
         </div>
         <div className="col-sm-6">
@@ -175,7 +167,6 @@ function Signin(props) {
                       required={true}
                       render="explicit"
                       onChange={onChange}
-                      // onChange={useCallback(() => setDisableSubmit(false))}
                       className={`mb-4 ${errors.recaptcha ? "is-invalid" : ""}`}
                     />
                     <div className="invalid-feedback">
@@ -186,7 +177,6 @@ function Signin(props) {
                         <button
                           className="btn btn-primary w-100 btnsText"
                           type="submit"
-                          // disabled={disableSubmit}
                         >
                           Login
                         </button>

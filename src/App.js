@@ -6,20 +6,15 @@ import {
   Route,
 } from "react-router-dom";
 import "./App.css";
-import Login from "./containers/Login";
-import ForgotPassword from "./containers/ForgotPassword";
-import ResetPassword from "./containers/ResetPassword";
 import Dashboard from "./containers/Dashboard";
 import VerifyEmail from "./containers/VerifyEmail";
 import CreateCert from "./containers/CreateCert";
 import ViewCert from "./containers/ViewCert";
-import ViewSingleCert from "./containers/ViewSingleCert";
 import StoreSettings from "./containers/StoreSettings/StoreSettings";
 import AdminOrders from "./containers/AdminOrders/AdminOrders";
 import MarketplaceStore from "./containers/Marketplace/MarketplaceStore";
 import LandingPage from "./containers/LandingPage/LandingPage";
 import MarketplaceCollection from "./containers/Marketplace/MarketplaceCollection";
-import AdminWallet from "./containers/AdminWallet/AdminWallet";
 import UserProfileContainer from "./containers/UserProfile/UserProfileContainer";
 import AdminChangePasswordContainer from "./containers/AdminChangePassword/AdminChangePasswordContainer";
 import HomeViewCert from "./containers/Marketplace/ViewCert";
@@ -33,7 +28,6 @@ import UserVerifyEmail from "./containers/MarketplaceAuthentication/UserVerifyEm
 import Logout from "./containers/logout/logout";
 import moment from "moment";
 import Delivery from "./containers/AdminDelivery";
-import Ticket from "./containers/Ticket";
 
 function App() {
   const [storeEndingDate, setStoreEndingDate] = useState("");
@@ -95,17 +89,9 @@ function App() {
               <Route exact path="/">
                 <LandingPage />
               </Route>
-              <Route path="/login" exact={true}>
-                <Login />
-              </Route>
+
               <Route path="/logout" exact={true}>
                 <Logout />
-              </Route>
-              <Route path="/forgotPassword" exact={true}>
-                <ForgotPassword />
-              </Route>
-              <Route path="/resetPassword" exact={true}>
-                <ResetPassword />
               </Route>
               <Route path="/marketplace/user/passwordUpdate" exact={true}>
                 <UserPasswordChangeContainer />
@@ -140,12 +126,6 @@ function App() {
               <Route path="/viewCert" exact={true}>
                 <ViewCert />
               </Route>
-              <Route path="/ticket" exact={true}>
-                <Ticket />
-              </Route>
-              <Route path="/viewSingleCert" exact={true}>
-                <ViewSingleCert />
-              </Route>
               <Route path="/user/profile" exact={true}>
                 <UserProfileContainer />
               </Route>
@@ -157,9 +137,6 @@ function App() {
               </Route>
               <Route path="/marketplace/deliveries" exact={true}>
                 <Delivery />
-              </Route>
-               <Route path="/marketplace/owner/wallet" exact={true}>
-                <AdminWallet />
               </Route>
               <Route path="/marketplace/collection/viewCert" exact={true}>
                 <CollectionViewCert />

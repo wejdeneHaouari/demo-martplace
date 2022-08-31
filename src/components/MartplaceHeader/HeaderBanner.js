@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import bannerImage from "../../assets/images/backgrnd.png";
 
@@ -16,7 +15,6 @@ const HeaderBanner = ({ type }) => {
       ) : (
         <BannerText>{type}</BannerText>
       )}
-      {/* Countdown timer here */}
     </Wrapper>
   );
 };
@@ -70,9 +68,3 @@ const BannerText = styled.p`
   color: #fff;
 `;
 
-const SearchWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-right: 62px;
-`;

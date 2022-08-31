@@ -42,7 +42,7 @@ function VerifyEmail() {
       .post(env.apiUrl + "api/users/confirm-verification-code", data, options)
       .then((res) => {
         notify("forgotError", res.data.msg);
-        history.push("/login")
+        history.push("/userLogin")
       });
   };
   const resendCode = () => {

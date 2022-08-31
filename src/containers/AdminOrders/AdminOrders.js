@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import Orders from "../../components/Orders/Orders";
-import StoreSettingsForm from "../../components/StoreSettings/StoreSettingsForm";
 import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
-import MarketplaceHeader from "../../components/MartplaceHeader";
 import CreditOrders from "../../components/Orders/CreditOrders";
 import CryptoOrders from "../../components/Orders/CryptoOrders";
 
 const AdminOrders = () => {
   const [generalSelected, setGeneralSelected] = useState(false);
   const [ordersSelected, setOrdersSelected] = useState(true);
-  const [walletSelected, setWalletSelected] = useState(false);
   const [deliverySelected, setDeliverySelected] = useState(false);
   const [changePasswordSelected, setChangePasswordSelected] = useState(false);
   const [showCredit, setShowCredit] = React.useState(true)
@@ -66,18 +62,7 @@ const AdminOrders = () => {
                   </a>
                 </li>
                 <div className="Line-Copy-6"></div>
-                <li className="nav-item" >
-                  <a
-                    href="/marketplace/owner/wallet"
-                    className={
-                      walletSelected
-                        ? "active subHeading nav-link"
-                        : "subHeading nav-link"
-                    }
-                  >
-                    WALLET
-                  </a>
-                </li>
+
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">
                   <a
@@ -102,10 +87,6 @@ const AdminOrders = () => {
           <button className={creditClass} type="button"  onClick = {() => {setShowCrypto(false) ;setShowCredit(true)}}>Credit</button>
           <button  className={cryptoClass} type="button"  onClick = {() => {setShowCrypto(true) ; setShowCredit(false)}}>Crypto</button>
         </div>
-
-
-
-
 
         { showCredit ? <CreditOrders /> : null }
         { showCrypto ? <CryptoOrders /> : null }
@@ -158,40 +139,5 @@ const SettingsContainer = styled.div`
   }
 `;
 
-const Options = styled.nav`
-  height: 50px;
-  width: 100%;
-  background-color: #fff;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-
-  &&& a {
-    font-family: "Aileron Reguler";
-    color: black;
-    text-decoration: none;
-    padding: 0 37.5px;
-  }
-`;
-//Same component used in admin and store front banner
-export const SearchButton = styled.button`
-  font-size: 14px;
-  width: 201px;
-  height: 50px;
-  color: white;
-  background-color: #3e4ef1;
-  margin-left: ${(props) => (props.type === "Home&Collection" ? "29px" : 0)};
-`;
-
-//Same component used in admin and store front banner
-export const SearchBar = styled.input`
-  height: 50px;
-  width: 310px;
-  border-left: solid 2px #e9e9e9;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  padding-left: 10px;
-`;
 
 

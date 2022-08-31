@@ -1,19 +1,15 @@
-import Cookies from "universal-cookie";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { env } from "../../constants";
 import { headers, userID, userIDObj } from "../../constants/apiEndPoints";
 import Moment from "moment";
-import DataTableExtensions from "react-data-table-component-extensions";
 import DataTable from "react-data-table-component";
 import "./index.css";
-import { Col, Container, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import styled from "styled-components";
 import Dropdowntriangle from "../../assets/images/storeFront/dropdownTriangle.svg";
-import { toast } from "react-toastify";
+
 const CreditOrders = () => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,11 +18,7 @@ const CreditOrders = () => {
   const [itemIdIsChecked, setItemIdIsChecked] = useState(false);
   const [itemNameIsChecked, setItemNameIsChecked] = useState(false);
   const [buyerEmailIsChecked, setBuyerEmailIsChecked] = useState(false);
-  const notify = (type, text) => {
-    if (type === "searchError") {
-      toast(text);
-    }
-  };
+
   const fetchCreditOrders = async (currentPage) => {
     const response = await axios.get(
       env.apiUrl +
@@ -147,10 +139,6 @@ const CreditOrders = () => {
     setPerPage(newPerPage);
   };
 
-  const tableData = {
-    columns,
-    data,
-  };
 
   const handleSearch = (page) => {
     if (searchField == "item-id") {
@@ -251,7 +239,6 @@ const CreditOrders = () => {
             onChangeRowsPerPage={handlePerRowsChange}
             onChangePage={handlePageChange}
             noDataComponent=""
-            // selectableRows
           />
         </div>
       </div>
@@ -260,28 +247,6 @@ const CreditOrders = () => {
 };
 export default CreditOrders;
 
-const FilterWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-basis: 65%;
-  justify-content: space-between;
-  max-width: 850px;
-
-  @media (max-width: 800px) {
-    flex-wrap: wrap;
-    row-gap: 5px;
-    order: 2;
-  }
-`;
-
-const FiltersContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 24px 45px 40px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
 
 const DropDown = styled.button`
   height: 30px;

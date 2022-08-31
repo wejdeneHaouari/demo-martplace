@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import StoreHeaderLogoImage from "../../assets/images/storeFront/demo.png";
 import logoutImg from "../../assets/images/logout.png";
@@ -92,7 +91,6 @@ const MarketplaceHeader = ({ type }) => {
             </li>
           </ul>
         </nav>
-        {/* <Icons></Icons> */}
       </RightContent>
     </Wrapper>
   );
@@ -141,9 +139,3 @@ const RightContent = styled.div`
   position: absolute;
 `;
 
-const SearchWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-right: 62px;
-`;

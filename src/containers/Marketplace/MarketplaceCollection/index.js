@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { env } from "../../../constants";
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import "react-confirm-alert/src/react-confirm-alert.css";
 import HeaderBanner from "../../../components/MartplaceHeader/HeaderBanner";
 import "./index.css";
 import Header from "../../../components/Header";
@@ -12,17 +12,10 @@ import ShareIcon from "../../../assets/images/storeFront/share-icon.svg";
 import { confirmAlert } from "react-confirm-alert";
 import Pagination from "reactjs-hooks-pagination";
 import { toast } from "react-toastify";
-import MarketplaceImage from "../../../assets/images/marketplaces.png";
-import InstagramLogo from "../../../assets/images/storeFront/instagram-blue.svg";
-import TwitterLogo from "../../../assets/images/storeFront/twitter-blue.svg";
-import YoutubeLogo from "../../../assets/images/storeFront/play-blue.svg";
-import FacebookLogo from "../../../assets/images/storeFront/facebook-blue.svg";
 
 function MarketplaceCollection() {
   const cookies = new Cookies();
-  const history = useHistory();
   const [result_array, setResultArray] = useState(null);
-  const [searchField, setSearchField] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,7 +29,6 @@ function MarketplaceCollection() {
     },
   };
   const userId = cookies.get("userId");
-  const userName = cookies.get("username");
   const userIDObj = {
     userId: userId,
   };
@@ -72,11 +64,7 @@ function MarketplaceCollection() {
     setCurrentPage(selectedPage);
   };
   const searchCerts = (e) => {
-    //  e.preventDefault();
-    const data = {
-      searchFor: searchTerm,
-      userId: userId,
-    };
+
     if (searchTerm.length > 0) {
       axios
         .post(
@@ -86,7 +74,6 @@ function MarketplaceCollection() {
         )
         .then((res) => {
           if (res.data.data.length > 0) {
-            // setResultArray(res.data.data);
             res.data.data.map((x) => setResultArray(x.data));
 
             setTotalRecords(res.data.totalCert);
@@ -120,7 +107,6 @@ function MarketplaceCollection() {
 
   //Share Certificate
   const shareCert = (t) => {
-    // e.preventDefault();
     let urlPrefix = window.location.href.split(".com")[0];
     const url = `${urlPrefix}.com/marketplace/viewCert?id=${t._id}`;
     const titles = `${url}`;
@@ -160,23 +146,17 @@ function MarketplaceCollection() {
       buttons: [
         {
           label: "Cancel",
-          // className='homeSharebtn'
-          // onClick: () => alert("Click No"),
         },
       ],
     });
   };
 
-  // const filteredItems = result_array.filter((item) =>
-  //   item.subject.toLowerCase().includes(searchField.toLowerCase())
-  // );
 
   return (
     <>
       <div className="container marketplaceContainer">
         <Header />
         <HeaderBanner type="Collection" />
-        {/* <Filter /> */}
 
         {!emptyCollection && result_array && (
           <>
@@ -277,18 +257,13 @@ function MarketplaceCollection() {
                 pageLimit={8}
                 pageRangeDisplayed={1}
                 onChangePage={handlePageClick}
-                // activePage={currentPage}
               />
             </div>
           </>
         )}
         {emptyCollection && (
           <div className="post__checkout">
-            {/*<img*/}
-            {/*    src={MarketplaceImage}*/}
-            {/*    alt='Marketplaces'*/}
-            {/*    className='post__checkout-img'*/}
-            {/*/>*/}
+
             <div className="mt-5"></div>
             <h1 style={{ margin: "0" }}>NFT acquired will showcase here</h1>
             <a href="/" className="post__checkout-btn">

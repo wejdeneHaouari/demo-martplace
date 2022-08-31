@@ -111,7 +111,7 @@ function Collection() {
     const userLoggedIn = cookies.get("userId");
     if (userLoggedIn) {
     } else {
-      history.push("/login");
+      history.push("/userLogin");
     }
   });
 
@@ -147,7 +147,7 @@ function Collection() {
       })
       .catch((error) => {
         if (error.response.status === 403) {
-          history.push("/login");
+          history.push("/userLogin");
           cookies.remove("response");
         }
       });
@@ -188,7 +188,7 @@ function Collection() {
         if (error.response) {
           if (error.response.status === 403) {
             notify("loginError", "Token is expired. Please try to login again");
-            history.push("/login");
+            history.push("/userLogin");
             cookies.remove("response");
             sessionStorage.clear();
           } else {

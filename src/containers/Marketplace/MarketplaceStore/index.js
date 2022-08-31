@@ -4,30 +4,23 @@ import { useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { env } from "../../../constants/index";
 import "./index.css";
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import "react-confirm-alert/src/react-confirm-alert.css";
 import HeaderBanner from "../../../components/MartplaceHeader/HeaderBanner";
-import Filter from "./Filter";
 import styled from "styled-components";
-import EthLogo from "../../../assets/images/storeFront/ethLogo.svg";
 import ShareIcon from "../../../assets/images/storeFront/share-icon.svg";
 import { getNftsbyUsername } from "../../../constants/apiEndPoints";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Common/Footer/Footer";
 import Pagination from "reactjs-hooks-pagination";
 import Dropdowntriangle from "../../../assets/images/storeFront/dropdownTriangle.svg";
-import Slider from "@material-ui/core/Slider";
-import { makeStyles } from "@material-ui/core/styles";
-import MarketplaceHeader from "../../../components/MartplaceHeader";
 import { confirmAlert } from "react-confirm-alert";
 import PriceConverter from "../../../components/PriceConvert";
 import { toast } from "react-toastify";
 import moment from "moment";
-import StoreClosed from "../../../components/StoreClosed";
 
 function MarketplaceStore() {
   const cookies = new Cookies();
   const history = useHistory();
-  const [searchTerm, setSearchTerm] = useState("");
   const [certificates, setcertificates] = useState([]);
   const [initialCertificates, setInitialcertificates] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -103,36 +96,21 @@ function MarketplaceStore() {
     "Bombarding",
     "Clouds",
   ];
-  //const merchandise = ["T-Shirt"]
-  // const passes = ["Festival Passes"]
   const checkIsBetween = (openingDate, endingDate) => {
     const d = new Date();
 
-    const date = new Date();
-    // const offset = date.getTimezoneOffset() * 60000;
     const dx = Date.parse(d);
-    let isTimeBetween = true;
-    isTimeBetween = moment(dx).isBetween(openingDate, endingDate); // true
+    let isTimeBetween = moment(dx).isBetween(openingDate, endingDate); // true
     if (isTimeBetween) {
       setStoreOpen(true);
     } else {
       setStoreOpen(false);
     }
-    //   setTimeout(() => {
-    //     if (isTimeBetween) {
-    //       setStoreOpen(true);
-    //     } else {
-    //       setStoreOpen(false);
-    //     }
-    //   }, 300);
+
   };
 
   const getStoreLogoBanner = () => {
     let myHeaders = new Headers();
-    myHeaders.append(
-      "Cookie",
-      "connect.sid=s%3AdNCAgjeHH2wJwWN7qh9Ar3M0lExpAhtB.P4OCs94J%2FTGPs63CXpBD947wAfhVZduWnrvZBxXQYYk"
-    );
 
     let requestOptions = {
       method: "GET",
@@ -166,14 +144,9 @@ function MarketplaceStore() {
   useEffect(() => {
     getStoreLogoBanner();
   }, []);
-  // useEffect(() => {
-  //   checkIsBetween();
-  // }, [storeEndingDate, storeOpeningDate]);
 
-  // API Request
   const token = cookies.get("response");
   const authToken = "Bearer " + token;
-  const userId = "624b026bda0714001768204d";
   const headers = {
     headers: {
       "content-type": "application/json",
@@ -201,7 +174,6 @@ function MarketplaceStore() {
     console.log("get all home certs");
     history.push("/marketplace/home?page=" + page);
     sessionStorage.setItem("filterskey", "1");
-    // setActiveClass(true);
     axios
       .get(
         env.apiUrl +
@@ -219,11 +191,9 @@ function MarketplaceStore() {
 
   useEffect(() => {
     console.log("in simple use effect ");
-    //on page change check
     allHomeCerts(currentPage);
   }, []);
 
-  //FILTERS
 
   const callFunOnKey = () => {
     var checkKey = sessionStorage.getItem("filterskey");
@@ -244,7 +214,6 @@ function MarketplaceStore() {
         handleAvailChange("available", true, currentPage, true);
       }
     } else {
-      // window.location.reload();
       console.log("call all home else filterkey call func");
       window.history.replaceState(null, null, "#");
       allHomeCerts(currentPage);
@@ -261,70 +230,7 @@ function MarketplaceStore() {
     setCurrentPage(selectedPage);
   };
 
-  const searchCerts = (e) => {
-    // e.preventDefault();
 
-    if (searchTerm.length > 0) {
-      axios
-        .post(
-          env.apiUrl +
-            `api/users/searchingFiles?userId=${userId}&searchFor=${searchTerm}`,
-          headers
-        )
-        .then((res) => {
-          if (res.data.data.length > 0) {
-            console.log("search", res.data.data);
-            res.data.data.map((x) => setcertificates(x.data));
-            setTotalRecords(res.data.totalCert);
-          } else {
-            notify("loginError", "No Result");
-          }
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    } else {
-      console.log("call all home else search");
-      allHomeCerts(currentPage);
-    }
-  };
-
-  const resetCheckboxes = () => {};
-
-  // const handlePriceChange = (page) => {
-  //   sessionStorage.setItem('filterskey', 2);
-  //   let priceOrder;
-  //   if (priceAsc.current.checked) {
-  //     priceOrder = 'ascending';
-  //   }
-  //   if (priceDesc.current.checked) {
-  //     priceOrder = 'descending';
-  //   }
-
-  //   if (priceOrder == 'ascending') {
-  //     // priceDesc.current.checked = false;
-  //     axios
-  //       .get(
-  //         env.apiUrl +
-  //           `api/users/sortForSaleCertificates40?username=${env.username}&order=${priceOrder}&page=${page}`
-  //       )
-  //       .then((res) => {
-  //         if(res.data.length>0){setcertificates(res.data.data);}
-  //         setTotalRecords(res.data.totalCert);
-  //       });
-  //   } else if (priceOrder == 'descending') {
-  //     // priceAsc.current.checked = false;
-  //     axios
-  //       .get(
-  //         env.apiUrl +
-  //           `api/users/sortForSaleCertificates40?username=${env.username}&order=${priceOrder}&page=${page}`
-  //       )
-  //       .then((res) => {
-  //         if(res.data.length>0){setcertificates(res.data.data);}
-  //         setTotalRecords(res.data.totalCert);
-  //       });
-  //   }
-  // };
 
   const handlePriceChange = (order, isPagination, page, active) => {
     console.log("in handlePriceChange ");
@@ -423,12 +329,7 @@ function MarketplaceStore() {
       background.map((back) => {
         if (back !== order) document.getElementById(back).checked = false;
       });
-      // merchandise.map((merch) => {
-      //   if (merch!==order)  document.getElementById(merch).checked = false;
-      // })
-      // passes.map((pass) => {
-      //   if (pass!==order)  document.getElementById(pass).checked = false;
-      // })
+
     }
     axios
       .get(
@@ -453,7 +354,6 @@ function MarketplaceStore() {
       allHomeCerts(currentPage);
       return;
     }
-    // console.log('sdsf', availOption);
     if (order == "sold") {
       // document.getElementById('order-ascending').checked = true;
       document.getElementById("order-available").checked = false;
@@ -485,9 +385,7 @@ function MarketplaceStore() {
     }
   };
 
-  //Share Certificate
   const shareCert = (t) => {
-    // e.preventDefault();
     let urlPrefix = window.location.href.split(".com")[0];
     const url = `${urlPrefix}.com/marketplace/viewCert?id=${t._id}`;
     const titles = `${url}`;
@@ -527,8 +425,7 @@ function MarketplaceStore() {
       buttons: [
         {
           label: "Cancel",
-          // className='homeSharebtn'
-          // onClick: () => alert("Click No"),
+
         },
       ],
     });
@@ -594,40 +491,7 @@ function MarketplaceStore() {
             </label>
           </div>
         ))}
-        {/*<div className="dropdown__checkbox-ctn">*/}
-        {/*  <strong>Merchandises</strong>*/}
-        {/*</div>*/}
-        {/*{merchandise.map(trait => (*/}
 
-        {/*    <div className="dropdown__checkbox-ctn">*/}
-        {/*      &nbsp;&nbsp;&nbsp;  <input*/}
-        {/*          type="checkbox"*/}
-        {/*          id={trait}*/}
-        {/*          onChange={() => handleTraitChange(trait)}*/}
-        {/*      />*/}
-        {/*      <label htmlFor="art" className="ml-2">*/}
-        {/*        {trait}*/}
-        {/*      </label>*/}
-        {/*    </div>*/}
-
-        {/*))}*/}
-        {/*<div className="dropdown__checkbox-ctn">*/}
-        {/*  <strong>Festival Passes</strong>*/}
-        {/*</div>*/}
-        {/*{passes.map(trait => (*/}
-
-        {/*    <div className="dropdown__checkbox-ctn">*/}
-        {/*      &nbsp;&nbsp;&nbsp; <input*/}
-        {/*          type="checkbox"*/}
-        {/*          id={trait}*/}
-        {/*          onChange={() => handleTraitChange(trait)}*/}
-        {/*      />*/}
-        {/*      <label htmlFor="art" className="ml-2">*/}
-        {/*        {trait}*/}
-        {/*      </label>*/}
-        {/*    </div>*/}
-
-        {/*))}*/}
       </div>
     );
   };
@@ -794,86 +658,7 @@ function MarketplaceStore() {
             </div>
           </div>
         </div>
-        {/* <div class='dropdown'>
-          <DropDown
-            class='btn btn-secondary dropdown-toggle'
-            type='button'
-            id='dropdownMenuButton'
-            data-toggle='dropdown'
-            aria-haspopup='true'
-            aria-expanded='false'
-          >
-            <p>Price</p>{' '}
-            <span>
-              {' '}
-              <DropDownTriangle src={Dropdowntriangle} />
-            </span>
-          </DropDown>
-          <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-            <div className='dropdown__checkbox-ctn'>
-              <input
-                type='checkbox'
-                id='order-ascending'
-                ref={priceAsc}
-                onChange={() => handlePriceChange(currentPage)}
-              />
-              <label for='art' className='ml-2'>
-                Low to High
-              </label>
-            </div>
-            <div className='dropdown__checkbox-ctn'>
-              <input
-                type='checkbox'
-                id='order-descending'
-                ref={priceDesc}
-                onChange={() => handlePriceChange(currentPage)}
-              />
-              <label for='art' className='ml-2'>
-                High to Low
-              </label>
-            </div>
-          </div>
-        </div> */}
-        {/* <div class='dropdown'>
-          <DropDown
-            class='btn btn-secondary dropdown-toggle'
-            type='button'
-            id='dropdownMenuButton'
-            data-toggle='dropdown'
-            aria-haspopup='true'
-            aria-expanded='false'
-          >
-            <p>Type</p>{' '}
-            <span>
-              {' '}
-              <DropDownTriangle src={Dropdowntriangle} />
-            </span>
-          </DropDown>
-          <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-            <div className='dropdown__checkbox-ctn'>
-              <input
-                type='checkbox'
-                id='order-art'
-                ref={typeArt}
-                onChange={() => handleTypeChange(currentPage)}
-              />
-              <label for='art' className='ml-2'>
-                Art
-              </label>
-            </div>
-            <div className='dropdown__checkbox-ctn'>
-              <input
-                type='checkbox'
-                id='order-experience'
-                ref={typeExp}
-                onChange={() => handleTypeChange(currentPage)}
-              />
-              <label for='art' className='ml-2'>
-                Experience
-              </label>
-            </div>
-          </div>
-        </div> */}
+
         <div class="dropdown">
           <DropDown
             class="btn btn-secondary dropdown-toggle"
@@ -1003,27 +788,15 @@ function MarketplaceStore() {
       </FilterWrapper>
     );
   };
-  const classes = useStyles();
 
   return (
     <>
-      {/* {(storeOpen==true) && */}
       <div className="container marketplaceContainer">
         <Header />
         <HeaderBanner type="Marketplace" />
         <FiltersContainer>
           {filter()}
-          <div className="home__search-ctn d-flex align-items-center">
-            <input
-              className="search"
-              type="search"
-              placeholder="Search"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button type="submit" onClick={(e) => searchCerts()}>
-              Search
-            </button>
-          </div>
+
         </FiltersContainer>
 
         <div
@@ -1052,8 +825,7 @@ function MarketplaceStore() {
 
         <Footer />
       </div>
-      {/* } */}
-      {/* {(storeOpen ===false) &&  <StoreClosed />} */}
+
     </>
   );
 }
@@ -1074,10 +846,6 @@ const FiltersContainer = styled.div`
   justify-content: space-between;
 `;
 
-const EthLogoImg = styled.img`
-  width: 11px;
-  margin-right: 4px;
-`;
 
 const FilterWrapper = styled.div`
   display: flex;
@@ -1141,17 +909,4 @@ const DropDownTriangle = styled.img`
   width: 10px;
 `;
 
-const useStyles = makeStyles({
-  root: {
-    width: "100%",
-  },
-  thumb: {
-    color: "#3e4ef1",
-  },
-  rail: {
-    color: `rgba(0, 0, 0, 0.26)`,
-  },
-  track: {
-    color: "#3e4ef1",
-  },
-});
+

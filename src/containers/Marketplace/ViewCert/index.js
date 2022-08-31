@@ -4,22 +4,19 @@ import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 import { env } from "../../../constants";
 
-import { confirmAlert } from "react-confirm-alert"; // Import
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import "./index.css";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Common/Footer/Footer";
 import HeaderBanner from "../../../components/MartplaceHeader/HeaderBanner";
 import openSeaBadge from "../../../assets/images/open-sea-badge.png";
 import shareIcon from "../../../assets/images/storeFront/share-icon.svg";
-import EthLogo from "../../../assets/images/storeFront/ethLogo.svg";
-import NftCard from "../../../components/NftCard";
 import HistoryIcon from "../../../assets/images/storeFront/history-icon.svg";
 import Moment from "moment";
 import { getNftsbyUsername } from "../../../constants/apiEndPoints";
 import ListIcon from "../../../assets/images/storeFront/list.svg";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper";
 import "swiper/swiper.scss";
 import "swiper/components/pagination/pagination.scss";
@@ -27,7 +24,6 @@ import PriceConverter from "../../../components/PriceConvert";
 import { Player } from "video-react";
 import "video-react/dist/video-react.css"; // import css
 import UserProgressBar from "../../../components/Progressbar";
-import StoreClosed from "../../../components/StoreClosed";
 import moment from "moment";
 
 function HomeViewCert() {
@@ -45,7 +41,6 @@ function HomeViewCert() {
   const checkIsBetween = (openingDate, endingDate) => {
     const d = new Date();
 
-    // const offset = date.getTimezoneOffset() * 60000;
     const dx = Date.parse(d);
 
     const isTimeBetween = moment(dx).isBetween(openingDate, endingDate); // true
@@ -59,10 +54,6 @@ function HomeViewCert() {
 
   const getStoreLogoBanner = () => {
     let myHeaders = new Headers();
-    myHeaders.append(
-      "Cookie",
-      "connect.sid=s%3AdNCAgjeHH2wJwWN7qh9Ar3M0lExpAhtB.P4OCs94J%2FTGPs63CXpBD947wAfhVZduWnrvZBxXQYYk"
-    );
 
     let requestOptions = {
       method: "GET",
@@ -94,13 +85,9 @@ function HomeViewCert() {
   useEffect(() => {
     getStoreLogoBanner();
   }, []);
-  // useEffect(() => {
-  //   checkIsBetween();
-  // }, [storeEndingDate, storeOpeningDate]);
+
 
   SwiperCore.use([Pagination]);
-  const navigationPrevRef = React.useRef(null);
-  const navigationNextRef = React.useRef(null);
 
   const cookies = new Cookies();
   const token = cookies.get("response");
@@ -144,7 +131,6 @@ function HomeViewCert() {
             Cookies.remove("response");
             sessionStorage.clear();
             notify("loginError", "Token is expired. Please try to login again");
-            //   history.push("/");
           } else {
             notify("loginError", "Something went wrong");
           }
@@ -168,7 +154,6 @@ function HomeViewCert() {
   };
 
   const shareCert = (t) => {
-    // e.preventDefault();
     const url = env.apiUrl + `viewSingleCert?${t.id}`;
     const titles = `Check out the Certificate (${t.subject}) created by (${t.issuerName}) %0D%0A%0D%0A ${url}`;
     const u = `${env.uploadImgLink}${t.imageName}`;
@@ -207,7 +192,6 @@ function HomeViewCert() {
       buttons: [
         {
           label: "Cancel",
-          // onClick: () => alert("Click No"),
         },
       ],
     });
@@ -353,9 +337,7 @@ function HomeViewCert() {
             </div>
             <div
               className="container"
-              // style={{
-              //   backgroundImage: "url(" + Background + ")",
-              // }}
+
             >
               <div className="test">
                 <div className="accordions__ctn">

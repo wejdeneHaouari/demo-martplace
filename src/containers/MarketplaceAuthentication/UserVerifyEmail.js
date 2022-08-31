@@ -116,7 +116,6 @@ function UserVerifyEmail() {
                         required={true}
                         render="explicit"
                         onChange={onChange}
-                        // onChange={useCallback(() => setDisableSubmit(false))}
                         className={`mb-4 ${errors.recaptcha ? "is-invalid" : ""}`}
                     />
                     <div className="invalid-feedback">

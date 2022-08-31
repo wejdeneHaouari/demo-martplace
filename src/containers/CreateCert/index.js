@@ -44,8 +44,7 @@ import {
   argon2id,
   bcrypt,
 } from "hash-wasm";
-import MarketplaceHeader from "../../components/MartplaceHeader";
-import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
+
 import Modal from "../../components/Modal";
 import useToggle from "../../components/Modal/useToggle";
 const sha256Algo = createSHA256();
@@ -67,8 +66,6 @@ function CreateCert() {
     { trait_type: "", value: "", max_value: "", display_type: "boost_number" },
   ]);
 
-  const [on, setOnState] = React.useState(false);
-  const toggle = () => setOnState((o) => !o);
 
   const [buttonName, setButtonName] = useState("Play");
 
@@ -88,21 +85,8 @@ function CreateCert() {
     }
   }, [audio]);
 
-  const handleClick = () => {
-    if (buttonName === "Play") {
-      a.play();
-      setButtonName("Pause");
-    } else {
-      a.pause();
-      setButtonName("Play");
-    }
-  };
 
-  const addFile = (e) => {
-    if (e.target.files[0]) {
-      setAudio(URL.createObjectURL(e.target.files[0]));
-    }
-  };
+
 
   const computeHMAC = async () => {
     const hasher = await createHMAC(sha256Algo, "apple");
@@ -183,16 +167,7 @@ function CreateCert() {
       toast(text);
     }
   };
-  // const handleFileChange = (e) => {
-  //     setValue("file", e.target.value.files); // you get all the files object here
-  //       const reader = new FileReader();
-  //       const file = e.target.files[0];
-  //     reader.onloadend = () => {
-  //           console.log(reader.result)
-  //         setValue(reader.result);
-  //       };
-  //       reader.readAsDataURL(file);
-  // };
+
   const handleFileChange = (e) => {
     // console.log(e.target.files[0], URL.createObjectURL(e.target.files[0]));
     if (e.target.files.length) {
@@ -214,19 +189,7 @@ function CreateCert() {
       });
     }
   };
-  //  const handleUpload = async (e) => {
-  //    e.preventDefault();
-  //    const formData = new FormData();
-  //    formData.append("image", image.raw);
 
-  //    await fetch("YOUR_URL", {
-  //      method: "POST",
-  //      headers: {
-  //        "Content-Type": "multipart/form-data",
-  //      },
-  //      body: formData,
-  //    });
-  //  };
   // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -303,10 +266,7 @@ function CreateCert() {
       .required("Origin Location is required")
       .min(2, "Origin Location must be at least 2 characters")
       .max(40, "Origin Location must not exceed 40 characters"),
-    // location: Yup.string()
-    //   .required("Current Location is required")
-    //   .min(2, "Current Location must be at least 2 characters")
-    //   .max(40, "Current Location must not exceed 40 characters"),
+
   });
 
   const {
@@ -333,8 +293,7 @@ function CreateCert() {
   };
 
   const cancelModal = () => {
-    // setType("");
-    // setname("");
+
     setOpen(false);
   };
   const continueModal = () => {
@@ -342,8 +301,7 @@ function CreateCert() {
   };
 
   const cancelLevelModal = () => {
-    // setType("");
-    // setname("");
+
     setOpenLevel(false);
   };
   const continueLevelModal = () => {
@@ -389,7 +347,6 @@ function CreateCert() {
       data.stockDetails +
       "&dateofIssue=" +
       data.dateofIssue;
-    // Moment.utc(data.dateofIssue).format();
     const token = cookies.get("response");
     const authToken = "Bearer " + token;
     const headers = {
@@ -407,7 +364,6 @@ function CreateCert() {
       )
       .then((res) => {
         if (res.data.msg === "Same Certificate uploaded on IPFS") {
-          // notify('loginError', 'Certificate created successfully');
           reset();
           setImage({
             preview: "",
@@ -415,9 +371,7 @@ function CreateCert() {
           });
           certificateCreated(res.data.data.id);
         } else {
-          // setConfirmModal(true);
           certificateCreated(res.data.data.id);
-          // notify('loginError', 'Certificate created successfully');
           reset();
         }
       })
@@ -425,7 +379,7 @@ function CreateCert() {
         if (error.response) {
           if (error.response.status === 403) {
             notify("loginError", "Token is expired. Please try to login again");
-            history.push("/login");
+            history.push("/userLogin");
             cookies.remove("response");
             sessionStorage.clear();
           } else {
@@ -491,7 +445,6 @@ function CreateCert() {
     <>
       <Header />
       <div className="container createContainer dashboardContainer">
-        {/* <HeaderBanner /> */}
         <form onSubmit={handleSubmit(formSubmit)}>
           <nav className="navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-light secondHeader fixed">
             <div className="container-fluid">
@@ -541,29 +494,20 @@ function CreateCert() {
                   <div className="col-md-6">
                     {/* <div className="imageContainer"> */}
                     <span className="labelTxt control-label labelClass mb-2">
-                      Audio <span className="mandatory">*</span>
+                      File <span className="mandatory">*</span>
                     </span>
                     <div className="traitsDesc">
-                      File type supported: MP4, WEBM, MP3, WAV, OGG, GLTF, Max
+                      File type supported: JPEG and PNG
                       size: 100MB
                     </div>
                     <div className="previewContainer">
                       <div className="innerDiv">
                         <input
                           type="file"
-                          // id="upload-button"
                           onChange={handleFileChange}
                           className={`  choseFile  `}
-                          // style={{ display: "none !important" }}
                         />
-                        <div className="audioTag">
-                          <audio
-                            useRef="audio_tag"
-                            src={audio}
-                            controls
-                            autoPlay
-                          />
-                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -575,58 +519,17 @@ function CreateCert() {
                       <div className="traitsDesc">
                         Drag and drop files to upload
                       </div>
-                      {/* <div className="Rectangle-Copy-16"> */}{" "}
                       <div className="previewContainer">
                         <div className="innerDiv">
                           <input
                             type="file"
-                            // id="upload-button"
                             className="thumbnailClass"
                             onChange={handleThumbnail}
-                            // style={{ display: "none !important" }}
                           />
-                          {/* <label
-                          htmlFor="upload-button"
-                          className="choseLabel"
-                          style={{ display: "block" }}
-                        >
-                          {thumbnail.preview ? (
-                            <>
-                              <img
-                                src={thumbnail.preview}
-                                alt="Video can't be previewed here"
-                                className=" w-50"
-                              />
-                              <i
-                                className="fa fa-edit fa-lg editIcon blue text-right"
-                                title="Edit"
-                              ></i>
-                            </>
-                          ) : (
-                            <div className="btn btn-secondary choseFile">
-                              CHOOSE FILE
-                            </div>
-                          )}
-                        </label>
-                        {thumbnail.preview.length > 0 ? (
-                          <i
-                            className="fa fa-trash fa-lg red trashIcon"
-                            type="button"
-                            onClick={resetThumbnail}
-                            title="Delete"
-                          ></i>
-                        ) : (
-                          ""
-                        )} */}
-                          {/* {image.preview && ( */}
-
-                          {/* )} */}
                         </div>
-                        {/* </div> */}
                       </div>
                     </div>
                   </div>
-                  {/* </div> */}
                 </div>
                 <div className="">
                   <div className="leftContainer">
@@ -760,7 +663,6 @@ function CreateCert() {
                         type="date"
                         data-date=""
                         data-date-format="DD MMMM YYYY"
-                        // value="2015-08-09"
                         className={`form-control ${
                           errors.dateofIssue ? "is-invalid" : ""
                         }`}
@@ -805,7 +707,6 @@ function CreateCert() {
                         type="date"
                         data-date=""
                         data-date-format="DD MMMM YYYY"
-                        // value="2015-08-09"
                         className={`form-control ${
                           errors.validUntil ? "is-invalid" : ""
                         }`}
@@ -904,55 +805,8 @@ function CreateCert() {
                           </label>
                         </div>
                       </div>
-                      {/* </div> */}
                     </div>
-                    {/* <div className="row">
 
-                    <div className="col-md-3">
-                      <div className="form-group mb-4">
-                      <label
-                        htmlFor="name"
-                        className="control-label labelClass"
-                        style={{ float: "left" }}
-                      >
-                        List for sale
-                      </label>
-                      <br />
-                      <button
-                        className={on ? "on listforSale" : "off listforSale"}
-                        on={on}
-                          onClick={toggle}
-                          
-                          type="button"
-                      >
-                        <span className="pin" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-md-8">
-                    <div className="form-group mb-4">
-                      <label
-                        htmlFor="name"
-                        className="control-label labelClass"
-                        style={{ float: "left" }}
-                      >
-                        Price
-                      </label>
-                      <input
-                        name="price"
-                        type="number"
-                        placeholder="Price of item"
-                        {...register("price")}
-                        className={`form-control`}
-                      />
-
-                      <div className="invalid-feedback">
-                        {errors.price?.message}
-                      </div>
-                    </div>
-                    </div>
-                    </div>
-                  */}
                     <div className="Line-4"></div>
                     <div className="form-group mb-4">
                       <div className="row">
@@ -1049,9 +903,7 @@ function CreateCert() {
                                         onClick={() => {
                                           continueModal();
                                         }}
-                                        // disabled={
-                                        //   name.length <= 0 && type.length <= 0
-                                        // }
+
                                       >
                                         Continue{" "}
                                       </button>
@@ -1211,9 +1063,7 @@ function CreateCert() {
                                         onClick={() => {
                                           continueLevelModal();
                                         }}
-                                        // disabled={
-                                        //   name.length <= 0 && type.length <= 0
-                                        // }
+
                                       >
                                         Continue{" "}
                                       </button>
@@ -1276,9 +1126,6 @@ function CreateCert() {
                       </div>
                     </div>
                   </div>
-                  {/* </div> */}
-                  {/* </div>
-                </div> */}
                 </div>
               </div>
             </div>

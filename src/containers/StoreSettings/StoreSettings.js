@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import Orders from "../../components/Orders/Orders";
 import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import { env } from "../../constants";
 import { APIs } from "../../assets/MarketplaceAPIEndpoints";
@@ -17,10 +16,8 @@ const StoreSettings = () => {
   const cookies = new Cookies();
   const [generalSelected, setGeneralSelected] = useState(true);
   const [ordersSelected, setOrdersSelected] = useState(false);
-  const [walletSelected, setWalletSelected] = useState(false);
   const [deliverySelected, setDeliverySelected] = useState(false);
   const [changePasswordSelected, setChangePasswordSelected] = useState(false);
-  const [userID, setUserID] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [contact, setContact] = useState("");
@@ -33,30 +30,12 @@ const StoreSettings = () => {
   const [banner, setBanner] = useState("");
   const [storeOpeningDateDisplay, setStoreOpeningDateDisplay] = useState("");
   const [storeEndingDateDisplay, setStoreEndingDateDisplay] = useState("");
-  const [couponExpiryDisplay, setCouponExpiryDisplay] = useState(new Date());
-  const [couponExpiryDate, setCouponExpiryDate] = useState(new Date());
   const [storeUsername, setStoreUsername] = useState("");
   const userId = cookies.get("userId");
   const token = cookies.get("response");
 
   const authToken = "Bearer " + token;
-  const [promo, setPromo] = useState("");
-  const [promoCode, setPromoCode] = useState("");
 
-  const handlePromo = (e) => {
-    setPromo(e.target.value);
-  };
-  const handlePromoCode = (e) => {
-    setPromoCode(e.target.value);
-  };
-  const firstName = cookies.get("firstname");
-
-  const headers = {
-    headers: {
-      "content-type": "application/json",
-      Authorization: authToken,
-    },
-  };
 
   const notify = (type, text) => {
     if (type === "loginError") {
@@ -107,10 +86,7 @@ const StoreSettings = () => {
 
   const getStoreLogoBanner = () => {
     let myHeaders = new Headers();
-    myHeaders.append(
-      "Cookie",
-      "connect.sid=s%3AdNCAgjeHH2wJwWN7qh9Ar3M0lExpAhtB.P4OCs94J%2FTGPs63CXpBD947wAfhVZduWnrvZBxXQYYk"
-    );
+
 
     let requestOptions = {
       method: "GET",
@@ -124,7 +100,6 @@ const StoreSettings = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log("result", result);
         setTitle(result.data.title);
         setBannerDetails(result.data.banner_details);
         setStoreDetails(result.data.store_details);
@@ -145,11 +120,9 @@ const StoreSettings = () => {
       })
       .catch((error) => console.log("error", error));
 
-    //call second API to get users profile picture
-    //getUserProfilePicture();
   };
 
-  const headers2 = {
+  const headers = {
     "Content-Type": "application/json",
     Authorization: authToken,
   };
@@ -161,7 +134,7 @@ const StoreSettings = () => {
     if (storeUsername.length > 0) {
       axios
         .post(env.apiUrl + `api/users/setUsername`, storeUsernameData, {
-          headers: headers2,
+          headers: headers,
         })
         .then((res) => {
           notify("loginError", res.data.msg);
@@ -217,19 +190,6 @@ const StoreSettings = () => {
                     }
                   >
                     ITEMS TO DELIVER
-                  </a>
-                </li>
-                <div className="Line-Copy-6"></div>
-                <li className="nav-item" key="myCert">
-                  <a
-                    href="/marketplace/owner/wallet"
-                    className={
-                      walletSelected
-                        ? "active subHeading nav-link"
-                        : "subHeading nav-link"
-                    }
-                  >
-                    WALLET
                   </a>
                 </li>
                 <div className="Line-Copy-6"></div>

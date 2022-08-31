@@ -9,7 +9,6 @@ import { APIs } from "../../assets/MarketplaceAPIEndpoints";
 import axios from "axios";
 import { headers, userID, userIDObj } from "../../constants/apiEndPoints";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
 const UserProfileContainer = () => {
   const [profileSelected, setProfileSelected] = useState(true);
   const [passwordSelected, setPasswordSelected] = useState(false);
@@ -23,8 +22,6 @@ const UserProfileContainer = () => {
   const lastname = cookies.get("lastname");
   const [profileFileName, setProfleFileName] = useState("Upload");
   const [profilePicture, setProfilePicture] = useState("");
-  const [message, setMessage] = useState("test ");
-  const history = useHistory();
   let alertMessage = "";
 
   const notify = (type, text) => {
@@ -43,45 +40,8 @@ const UserProfileContainer = () => {
     setPasswordSelected(true);
   };
 
-  // const updateUserEmail = () => {
-  //   let alert = ""
-  //   const data = {
-  //     userId: userId,
-  //     newemail: email,
-  //     password:password}
-  //   axios
-  //       .post(env.apiUrl + 'api/users/updateEmail',data, headers)
-  //       .then((res) => {
-  //         if (res.data.status === false) {
-  //          // notify('loginError', res.data.msg);
-  //           alertMessage += ' \n ' + res.data.msg
-  //
-  //           if (res.data.msg === 'User email is Not Verified.') {
-  //             history.push('/verify');
-  //           }
-  //         } else {
-  //
-  //           alertMessage += ' \n ' + res.data.msg
-  //
-  //           cookies.remove("email",{ path: '/' });
-  //           cookies.set("email", email,{ path: '/' });
-  //
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //         if (err.response) {
-  //
-  //          // notify('loginError', err.response.data.msg);
-  //           alertMessage += ' \n ' + err.response.data.msg + " for email "
-  //
-  //         }
-  //       });
-  //
-  // }
 
   const updateFirstAndLastName = (changeFirstname, changeLastName) => {
-    let alert = "";
     const data = {
       userId: userId,
       firstName: changeFirstname,
@@ -92,10 +52,7 @@ const UserProfileContainer = () => {
       .then((res) => {
         if (res.data.status === false) {
           notify("loginError", res.data.msg);
-          //alertMessage += ' \n ' + res.data.msg
         } else {
-          //notify('loginError', res.data.msg);
-          //alertMessage += ' \n ' + "name update successfully"
 
           cookies.remove("firstname", { path: "/" });
           cookies.set("firstname", changeFirstname, { path: "/" });
@@ -110,7 +67,6 @@ const UserProfileContainer = () => {
         console.log(err);
         if (err.response) {
           notify("loginError", err.response.data.msg);
-          // alertMessage += ' \n ' + err.response.data.msg
         }
       });
   };
@@ -123,9 +79,7 @@ const UserProfileContainer = () => {
     console.log(newFirstName);
     console.log(newLastName);
     console.log(!newLastName);
-    // if (email && email !==cookies.get('email')) {updateUserEmail()}
     if (newFirstName && checkVoidString(newLastName)) {
-      console.log("1");
       console.log(lastname);
       updateFirstAndLastName(newFirstName, lastname);
     }
@@ -135,7 +89,6 @@ const UserProfileContainer = () => {
     if (newFirstName && newLastName) {
       updateFirstAndLastName(newFirstName, newLastName);
     }
-    // if ( (newFirstName || newLastName) || ((newFirstName !==firstname) || (newLastName !==lastname))) {updateFirstAndLastName()}
     if (profilePicture) {
       updateProfilePictureOnClick();
     }
@@ -172,11 +125,9 @@ const UserProfileContainer = () => {
           });
           alertMessage += " \n " + res.data.msg;
 
-          //notify('loginError', alertMessage);
           window.location.reload(true);
         });
 
-      //window.location.reload(true)
     });
   };
 
@@ -291,38 +242,3 @@ const SettingsContainer = styled.div`
   }
 `;
 
-const Options = styled.nav`
-  height: 50px;
-  width: 100%;
-  background-color: #fff;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-
-  &&& a {
-    font-family: "Aileron Reguler";
-    color: black;
-    text-decoration: none;
-    padding: 0 37.5px;
-  }
-`;
-//Same component used in admin and store front banner
-export const SearchButton = styled.button`
-  font-size: 14px;
-  width: 201px;
-  height: 50px;
-  color: white;
-  background-color: #3e4ef1;
-  margin-left: ${(props) => (props.type === "Home&Collection" ? "29px" : 0)};
-`;
-
-//Same component used in admin and store front banner
-export const SearchBar = styled.input`
-  height: 50px;
-  width: 310px;
-  border-left: solid 2px #e9e9e9;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  padding-left: 10px;
-`;

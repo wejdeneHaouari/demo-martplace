@@ -16,8 +16,6 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import VideoThumbnail from "react-video-thumbnail";
-import { listOnSaleUrl } from "../../constants/apiEndPoints";
 import Header from "../../components/Header";
 import Footer from "../../components/Common/Footer/Footer";
 import openSeaBadge from "../../assets/images/open-sea-badge.png";
@@ -43,7 +41,6 @@ function ViewCert() {
   const [showTransfer, setTransferShow] = useState(false);
   const [showSearch, setSearchShow] = useState(true);
   const [receiverId, setReceiverID] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
   const [showTransferButton, setshowTransferButton] = useState(false);
   const [showSignUpTransfer, setSignUpTransferShow] = useState(false);
   const [isVerified, setIsVerified] = useState(true);
@@ -88,7 +85,6 @@ function ViewCert() {
         setcerticateArray(res.data.data);
         console.log(res.data.data);
         setListingPrice(res.data.data.price / 100);
-        console.log("df", certificateArray.price);
 
         const certArray = res.data.data;
         certArray.events.map((item) => {
@@ -97,7 +93,6 @@ function ViewCert() {
             settokenId(item.token_id);
           }
         });
-        const str = certificateArray.imageName;
         setImageExt(res.data.data.imageName.split(".").pop());
       })
       .catch((error) => {
@@ -106,7 +101,7 @@ function ViewCert() {
             Cookies.remove("response");
             sessionStorage.clear();
             notify("loginError", "Token is expired. Please try to login again");
-            //   history.push("/");
+            history.push("/userLogin");
           } else {
             notify("loginError", "Something went wrong");
           }
@@ -126,9 +121,7 @@ function ViewCert() {
   }
 
   const verifyCert = (id) => {
-    //   console.log(currentPage);
 
-    // e.preventDefault();
     confirmAlert({
       title: "Confirm Verify",
       message: "Do you want to pay $1 for verify ? ",
@@ -157,7 +150,7 @@ function ViewCert() {
                       "loginError",
                       "Token is expired. Please try to login again"
                     );
-                    history.push("/");
+                    history.push("/userLogin");
                     cookies.remove("response");
                   } else {
                     notify("loginError", error.response.data.msg);
@@ -168,7 +161,6 @@ function ViewCert() {
         },
         {
           label: "Cancel",
-          // onClick: () => alert("Click No"),
         },
       ],
     });
@@ -223,78 +215,31 @@ function ViewCert() {
         "content-type": "application/json",
       },
     };
-    axios
-      .get(
-        env.apiUrl +
-          `api/users/checkSecondTransfer?username=${env.username}&imageId=${p}`,
-        checkHeader
-      )
-      .then((res) => {
-        setSignUpTransferShow(false);
-        setshowTransferButton(true);
-        if (password) {
-          if (res.data.msg === "sellSafetransferfrom") {
-            axios
-              .post(
-                env.apiUrl + "api/users/sellSafetransferfrom",
-                transferData,
-                headers
-              )
-              .then((res) => {
-                notify("loginError", res.data.msg);
-                // setTransferShow(true);
-                setFirstNameShow(false);
-                setSearchShow(false);
-                window.location.reload();
-              })
-              .catch((err) => {
-                if (err.response) {
-                  notify("loginError", err.response.data.msg);
-                  if (err.response.data.status === false) {
-                    if (
-                      err.response.data.msg ===
-                      "Wallet Balance Is Less Than To Transaction Fee"
-                    ) {
-                      history.push("/wallet");
-                    }
-                  }
-                }
-              });
-          } else if (res.data.msg === "transferfile") {
-            axios
-              .post(
-                env.apiUrl + "api/users/transferFilewithsqs",
-                transferData,
-                headers
-              )
-              .then((res) => {
-                notify("loginError", res.data.msg);
-                // setTransferShow(true);
-                setFirstNameShow(false);
-                setSearchShow(false);
-                window.location.reload();
-              })
-              .catch((err) => {
-                if (err.response) {
-                  notify("loginError", err.response.data.msg);
-                  if (err.response.data.status === false) {
-                    if (
-                      err.response.data.msg ==
-                      "User is not owner of the Certificate."
-                    ) {
-                    }
-                  }
-                }
-              });
-          } else {
-          }
-        } else {
-          notify("loginError", "Please provide login password");
-        }
-      })
-      .catch((err) => {
-        notify("loginError", err.response.data.msg);
-      });
+
+    if (password) {
+      axios
+          .post(
+              env.apiUrl + "api/users/transferFilewithsqs",
+              transferData,
+              headers
+          )
+          .then((res) => {
+            notify("loginError", res.data.msg);
+            setFirstNameShow(false);
+            setSearchShow(false);
+            window.location.reload();
+          })
+          .catch((err) => {
+            if (err.response) {
+              notify("loginError", err.response.data.msg);
+
+            }
+          });
+
+    } else {
+      notify("loginError", "Please provide login password");
+    }
+
   };
   const signUp = (data) => {
     const signnupData = {
@@ -325,25 +270,9 @@ function ViewCert() {
       });
   };
 
-  const createThumbnail = (prop) => {
-    return (
-      <VideoThumbnail
-        snapshotAtTime={3}
-        videoUrl={`${env.uploadImgLink}${certificateArray.imageName}`}
-        thumbnailHandler={(thumbnail) => setThumbnail(thumbnail)}
-        // thumbnailHandler={(thumbnail) => setThumbnail(thumbnail)}
-        width={2000}
-        height={800}
-        style={{
-          backgroundImage: "url(" + thumbnail + ")",
-        }}
-        renderThumbnail={true}
-      />
-    );
-  };
+
 
   const shareCert = (t) => {
-    // e.preventDefault();
     const url = env.apiUrl + `viewSingleCert?${t.id}`;
     const titles = `Check out the Certificate (${t.subject}) created by (${t.issuerName}) %0D%0A%0D%0A ${url}`;
     const u = `${env.uploadImgLink}${t.imageName}`;
@@ -382,12 +311,10 @@ function ViewCert() {
       buttons: [
         {
           label: "Cancel",
-          // onClick: () => alert("Click No"),
         },
       ],
     });
   };
-
   const updatePrice = (t) => {
     const data = {
       imageId: t._id,
@@ -422,37 +349,8 @@ function ViewCert() {
   };
 
   const ref = React.createRef();
-  const redirectToFraction = () => {
-    if (token) {
-      window.location.href = `/fractionalize?id=${certificateArray._id}`;
-    } else {
-      window.location.href = `/userlogin`;
-    }
-  };
-  const listOnSale = () => {
-    const listOnSaleData = {
-      userId: userId,
-      imageId: signData.email,
-      forSaleStatus: firstName,
-      price: 10,
-    };
-    const options = {
-      headers: {
-        "content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
-    axios
-      .post(env.apiUrl + listOnSaleUrl, listOnSaleData, options)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        if (err.response) {
-          // notify("loginError", err.response.data.msg);
-        }
-      });
-  };
+
+
 
   //List For Sale
   const listForSaleAPi = (t) => {
@@ -650,7 +548,6 @@ function ViewCert() {
   return (
     <>
       <Header />
-      {/* {createThumbnail} */}
       <div className="container viewContainer" ref={ref}>
         <div className="test">
           <div className="card viewContainer--vc">
@@ -672,20 +569,8 @@ function ViewCert() {
                       objectFit: "contain",
                     }}
                     className="certImg"
-                    // other props
                   />
-                  {/* <VideoThumbnail
-                    videoUrl={`${env.uploadImgLink}${certificateArray.imageName}`}
-                    thumbnailHandler={(thumbnail) => console.log(thumbnail)}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                    }}
-                    className="certImg"
-                    renderThumbnail={true}
-                    snapshotAtTime={2}
-                  /> */}
+
                   {certificateArray.imageStatus === "Verified" && (
                     <img
                       src={verifiedlogo}
@@ -695,7 +580,6 @@ function ViewCert() {
                   )}
                 </div>
 
-                {/* //   <div className="player-wrapper"> */}
               </>
             ) : (
               <div className="containerdiv">
@@ -838,7 +722,6 @@ function ViewCert() {
                     </div>
                   </div>
                 )}
-              {/* // console.log(certificateArray.attributes[0].trait_type.length>0)} */}
 
               <div className="cc__taits-ctn d-flex">
                 {certificateArray &&
@@ -919,14 +802,12 @@ function ViewCert() {
                         className="btn btn-primary cc__btn-verify"
                         id={"certVerifyStatus" + certificateArray._id}
                         isVerified
-                        // style={{ padding: "0px", marginTop: "-20px" }}
                       >
                         Mint
                       </button>
                     ) : (
                       <button
                         className=""
-                        // style={{ padding: "0px", marginTop: "-20px" }}
                       >
                         <span className="Transferred">
                           <i className="fa fa-hourglass" title="Queued"></i>
@@ -967,7 +848,6 @@ function ViewCert() {
                   {certificateArray.imageStatus === "Processing" && (
                     <button
 
-                    // style={{ padding: "0px", marginTop: "-20px" }}
                     >
                       <span>
                         <i
@@ -977,13 +857,7 @@ function ViewCert() {
                       </span>
                     </button>
                   )}
-                  <a
-                    className="btn btn-primary cc__btn-transfer"
-                    id="ticket"
-                    href={`./ticket?id=${certificateArray.id}`}
-                  >
-                    View Ticket
-                  </a>
+
 
                   {certificateArray.isOwned === "Yes" &&
                     certificateArray.imageStatus === "Verified" && (
@@ -1024,8 +898,6 @@ function ViewCert() {
                         >
                           Transfer
                         </a>
-                        {/* <a onClick={toggleModal}>Transfer</a> */}
-                        {/* <button onClick={toggleModal}>Open modal</button> */}
 
                         <Modal
                           isOpen={isTransferOpen}
@@ -1109,7 +981,6 @@ function ViewCert() {
                                     className="btn btn-primary w-100"
                                     type="submit"
 
-                                    // disabled={disableSubmit}
                                   >
                                     Search
                                   </button>
@@ -1121,7 +992,6 @@ function ViewCert() {
                                     onClick={(e) =>
                                       transfer(certificateArray.id)
                                     }
-                                    // disabled={disableSubmit}
                                   >
                                     Transfer
                                   </button>
@@ -1131,7 +1001,6 @@ function ViewCert() {
                                     className="btn btn-primary w-100"
                                     type="button"
                                     onClick={(e) => signUp(certificateArray.id)}
-                                    // disabled={disableSubmit}
                                   >
                                     Transfer
                                   </button>
@@ -1271,7 +1140,6 @@ function ViewCert() {
                                               <div className="col-md-1">
                                                 <i
                                                   class="fa fa-star fa-9x"
-                                                  // style="color:#6610f2"
                                                 ></i>
                                               </div>
                                               <div className="col-md-8">

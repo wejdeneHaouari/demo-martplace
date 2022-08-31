@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
-import UserProfile from "../../components/UserProfile/UserProfile";
 import Cookies from "universal-cookie";
 import { env } from "../../constants";
-import { APIs } from "../../assets/MarketplaceAPIEndpoints";
-import UserUpdatePasswordForm from "../../components/UserUpdatePasswordForm/UserUpdatePasswordForm";
 import { toast } from "react-toastify";
 import {userID} from "../../constants/apiEndPoints";
 
@@ -22,7 +19,6 @@ const UserPasswordChangeContainer = () => {
   );
   const cookies = new Cookies();
   const authToken = "Bearer " + cookies.get("userToken");
-  const userId = cookies.get("userId");
 
   const handleProfileNavClick = () => {
     setProfileSelected(true);
@@ -111,12 +107,7 @@ const UserPasswordChangeContainer = () => {
           </div>
         </nav>
       </SettingsContainer>
-      {/*<UserUpdatePasswordForm*/}
-      {/*  handleFormSubmit={handleFormSubmit}*/}
-      {/*  setCurrentPassword={setCurrentPassword}*/}
-      {/*  setNewPassword={setNewPassword}*/}
-      {/*  setReenterNewPassword={setReenterNewPassword}*/}
-      {/*/>*/}
+
       <WrapperPassword>
         <SettingsForm id="storeSettingsForm" onSubmit={handleFormSubmit}>
           <div className="form-group">

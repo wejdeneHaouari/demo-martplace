@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
-import CreditOrders from "../../components/Orders/CreditOrders";
-import CryptoOrders from "../../components/Orders/CryptoOrders";
+import CreditOrders from "../Orders/CreditOrders";
+import CryptoOrders from "../Orders/CryptoOrders";
 
 const AdminOrders = () => {
   const [generalSelected, setGeneralSelected] = useState(false);

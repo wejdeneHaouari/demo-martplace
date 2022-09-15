@@ -5,7 +5,6 @@ import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import UserProfile from "../../components/UserProfile/UserProfile";
 import Cookies from "universal-cookie";
 import { env } from "../../constants";
-import { APIs } from "../../assets/MarketplaceAPIEndpoints";
 import axios from "axios";
 import { headers, userID, userIDObj } from "../../constants/apiEndPoints";
 import { toast } from "react-toastify";
@@ -76,9 +75,7 @@ const UserProfileContainer = () => {
   };
 
   const updateUserProfile = () => {
-    console.log(newFirstName);
-    console.log(newLastName);
-    console.log(!newLastName);
+
     if (newFirstName && checkVoidString(newLastName)) {
       console.log(lastname);
       updateFirstAndLastName(newFirstName, lastname);
@@ -110,7 +107,7 @@ const UserProfileContainer = () => {
 
     //API request to update the users profile picture
     fetch(
-      env.apiUrl + APIs.updateStore + `userId=${cookies.get("userId")}`,
+      env.apiUrl + "api/users/updateProfile?" + `userId=${cookies.get("userId")}`,
       requestOptions
     ).then(() => {
       axios

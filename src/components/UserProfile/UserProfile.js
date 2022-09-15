@@ -70,8 +70,6 @@ const UserProfile = ({
   };
 
   const updateEmail = () => {
-    console.log(email);
-    console.log(password);
     const data = {
       userId: userID,
       newemail: email,
@@ -84,7 +82,7 @@ const UserProfile = ({
           notify('loginError', res.data.msg);
 
           if (res.data.msg === 'User email is Not Verified.') {
-            history.push('/verify');
+            history.push('/userVerifyEmail');
           }
         } else {
           notify('loginError', res.data.msg);

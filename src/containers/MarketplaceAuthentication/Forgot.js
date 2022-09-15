@@ -9,7 +9,7 @@ import axios from "axios";
 import { env } from "../../constants";
 function Forgot() {
   const notify = (type, text) => {
-    if (type === "forgotError") {
+    if (type === "forgotError" || type === "success") {
       toast(text);
     }
   };
@@ -36,7 +36,7 @@ function Forgot() {
     axios
       .post(env.apiUrl + "api/users/forgotPassword", data, options)
       .then((res) => {
-        notify("forgotError", res.data.msg);
+        notify("success", res.data.msg);
       })
     .catch((error) => {
        if (error.response) {

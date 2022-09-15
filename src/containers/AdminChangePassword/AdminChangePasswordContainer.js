@@ -63,31 +63,8 @@ const AdminChangePasswordContainer = () => {
                   </a>
                 </li>
                 <div className="Line-Copy-6"></div>
-                <li className="nav-item" key="myCert">
-                  <a
-                    href="/marketplace/orders"
-                    className={
-                      ordersSelected
-                        ? "active subHeading nav-link"
-                        : "subHeading nav-link"
-                    }
-                  >
-                    ORDERS
-                  </a>
-                </li>
-                <div className="Line-Copy-6"></div>
-                <li className="nav-item" key="myCert">
-                  <a
-                      href="/marketplace/deliveries"
-                      className={
-                        deliverySelected
-                            ? "active subHeading nav-link"
-                            : "subHeading nav-link"
-                      }
-                  >
-                    ITEMS TO DELIVER
-                  </a>
-                </li>
+
+
                 <div className="Line-Copy-6"></div>
                 <div className="Line-Copy-6"></div>
                 <li className="nav-item" key="myCert">

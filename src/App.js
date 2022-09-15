@@ -7,11 +7,9 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./containers/Dashboard";
-import VerifyEmail from "./containers/VerifyEmail";
 import CreateCert from "./containers/CreateCert";
 import ViewCert from "./containers/ViewCert";
 import StoreSettings from "./containers/StoreSettings/StoreSettings";
-import AdminOrders from "./containers/AdminOrders/AdminOrders";
 import MarketplaceStore from "./containers/Marketplace/MarketplaceStore";
 import LandingPage from "./containers/LandingPage/LandingPage";
 import MarketplaceCollection from "./containers/Marketplace/MarketplaceCollection";
@@ -27,7 +25,6 @@ import Signin from "./containers/MarketplaceAuthentication/Signin";
 import UserVerifyEmail from "./containers/MarketplaceAuthentication/UserVerifyEmail";
 import Logout from "./containers/logout/logout";
 import moment from "moment";
-import Delivery from "./containers/AdminDelivery";
 
 function App() {
   const [storeEndingDate, setStoreEndingDate] = useState("");
@@ -114,9 +111,6 @@ function App() {
               <Route path="/userResetPassword" exact={true}>
                 <Reset />
               </Route>
-              <Route path="/verify" exact={true}>
-                <VerifyEmail />
-              </Route>
               <Route path="/dashboard" exact={true}>
                 <Dashboard />
               </Route>
@@ -132,12 +126,7 @@ function App() {
               <Route path="/marketplaceSettings" exact={true}>
                 <StoreSettings />
               </Route>
-              <Route path="/marketplace/orders" exact={true}>
-                <AdminOrders />
-              </Route>
-              <Route path="/marketplace/deliveries" exact={true}>
-                <Delivery />
-              </Route>
+
               <Route path="/marketplace/collection/viewCert" exact={true}>
                 <CollectionViewCert />
               </Route>

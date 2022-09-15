@@ -128,12 +128,10 @@ function Dashboard() {
     }
   };
   const allCerts = (page) => {
-    console.log(page);
     history.push("/dashboard?page=" + page);
 
     sessionStorage.setItem("newKey", 1);
     window.history.replaceState(null, null, "#");
-    // setActiveClass(true);
     axios
       .post(
         env.apiUrl + `api/users/getFilesByuserId40?page=` + page,
@@ -670,7 +668,7 @@ function Dashboard() {
   }
 
   const filteredItems = result_array.filter((item) =>
-    item.subject.toLowerCase().includes(searchTerm.toLowerCase())
+    item.subject?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const renderData = (e) => {

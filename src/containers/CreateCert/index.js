@@ -312,7 +312,6 @@ function CreateCert() {
     const formData = new FormData();
     formData.append("file", image.raw);
     formData.append("thumbnail", thumbnail.raw);
-    console.log(image, audio, thumbnail);
     const fileHash = hash.sha256;
     var queryTosend2 =
       "category=" +

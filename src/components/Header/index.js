@@ -172,7 +172,7 @@ function Header() {
           if (res.data.status === false) {
             notify("loginError", res.data.msg);
             if (res.data.msg === "User email is Not Verified.") {
-              history.push("/verify");
+              history.push("/userVerifyEmail");
             }
           } else if (res.data.status === true) {
             setProfilePicture(res.data.data.logo);
@@ -298,16 +298,8 @@ function Header() {
                         Dashboard
                       </a>
                     )}
-                    {userRole === "owner" && (
-                      <a className="dropdown-item" href="/marketplace/orders">
-                        Orders
-                      </a>
-                    )}
-                    {userRole === "owner" && (
-                      <a className="dropdown-item" href="/marketplace/deliveries">
-                        Items To Deliver
-                      </a>
-                    )}
+
+
                     {userRole === "client" && (
                       <a className="dropdown-item" href="/user/profile">
                         Profile

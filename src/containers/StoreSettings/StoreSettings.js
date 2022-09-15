@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import HeaderBanner from "../../components/MartplaceHeader/HeaderBanner";
 import { env } from "../../constants";
-import { APIs } from "../../assets/MarketplaceAPIEndpoints";
 import Cookies from "universal-cookie";
 import Moment from "moment";
 import { toast } from "react-toastify";
@@ -72,11 +71,10 @@ const StoreSettings = () => {
     setLoader(true);
     //API request to update the store settings
     fetch(
-      env.apiUrl +
-        APIs.updateStore +
-        `userId=${cookies.get(
-          "userId"
-        )}&title=${title}&description=${description}&contact=${contact}&banner_details=${bannerDetails}&store_details=${storeDetails}&store_opening_date=${storeOpeningDate}&store_ending_date=${storeEndingDate}`,
+        env.apiUrl + `userId=${cookies.get(
+            "userId"
+        )}&title=${title}&description=${description}&contact=${contact}&banner_details=${bannerDetails}&store_details=${storeDetails}&store_opening_date=${storeOpeningDate}&store_ending_date=${storeEndingDate}` +
+        "api/users/updateProfile?",
       requestOptions
     ).then((res) => {
       setLoader(false);
@@ -167,32 +165,7 @@ const StoreSettings = () => {
                   </a>
                 </li>
                 <div className="Line-Copy-6"></div>
-                <li className="nav-item" key="myCert">
-                  <a
-                    href="/marketplace/orders"
-                    className={
-                      ordersSelected
-                        ? "active subHeading nav-link"
-                        : "subHeading nav-link"
-                    }
-                  >
-                    ORDERS
-                  </a>
-                </li>
-                <div className="Line-Copy-6"></div>
-                <li className="nav-item" key="myCert">
-                  <a
-                    href="/marketplace/deliveries"
-                    className={
-                      deliverySelected
-                        ? "active subHeading nav-link"
-                        : "subHeading nav-link"
-                    }
-                  >
-                    ITEMS TO DELIVER
-                  </a>
-                </li>
-                <div className="Line-Copy-6"></div>
+
                 <li className="nav-item" key="myCert">
                   <a
                     href="/marketplace/owner/change-password"

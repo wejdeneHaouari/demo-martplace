@@ -31,7 +31,6 @@ function HomeViewCert() {
   const [imageExt, setImageExt] = useState("");
   const [token_id, settokenId] = useState("");
   const [contact_address, setContactAddress] = useState("");
-  const [certificates, setcertificates] = useState([]);
   const [isActive, setIsActive] = useState(false);
 
   const [storeEndingDate, setStoreEndingDate] = useState("");
@@ -114,9 +113,7 @@ function HomeViewCert() {
       .post(env.apiUrl + `api/users/getFilesById`, imgId, certheaders)
       .then((res) => {
         setcerticateArray(res.data.data);
-        console.log(res.data.data);
         const certArray = res.data.data;
-        console.log("certificate", res.data);
         certArray.events.map((item) => {
           if (item.type == "Creation") {
             setContactAddress(item.contract_address);
@@ -138,20 +135,7 @@ function HomeViewCert() {
       });
   }, []);
 
-  useEffect(() => {
-    allHomeCerts();
-  }, [certificateArray]);
 
-  const allHomeCerts = () => {
-    axios
-      .get(env.apiUrl + getNftsbyUsername + `?username=marketplacefestival`)
-      .then((res) => {
-        const filteredItems = res.data.data.filter((i) => {
-          return i._id !== certificateArray._id;
-        });
-        setcertificates(filteredItems.slice(0, 10));
-      });
-  };
 
   const shareCert = (t) => {
     const url = env.apiUrl + `viewSingleCert?${t.id}`;
@@ -202,7 +186,7 @@ function HomeViewCert() {
       {certificateArray.price && (
         <div>
           <Header />
-          <HeaderBanner type="Checkout" />
+          <HeaderBanner type="NFT details" />
           <div className="container viewContainer nftpdp__wrapper">
             <div className="nftpdp__cards-ctn">
               <div className="nftpdp__card nftpdp__card--image">
@@ -463,7 +447,6 @@ function HomeViewCert() {
                                                       <div className="col-md-1">
                                                         <i
                                                           class="fa fa-star fa-9x"
-                                                          // style="color:#6610f2"
                                                         ></i>
                                                       </div>
                                                       <div className="col-md-8">

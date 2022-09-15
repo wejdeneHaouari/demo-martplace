@@ -96,6 +96,17 @@ function MarketplaceStore() {
     "Bombarding",
     "Clouds",
   ];
+
+  useEffect(() => {
+    getStoreLogoBanner();
+    allHomeCerts(currentPage);
+  }, []);
+
+  useEffect(() => {
+    callFunOnKey();
+  }, [currentPage]);
+
+
   const checkIsBetween = (openingDate, endingDate) => {
     const d = new Date();
 
@@ -124,7 +135,6 @@ function MarketplaceStore() {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         const date = new Date();
         const offset = date.getTimezoneOffset() * 60000;
 
@@ -141,9 +151,8 @@ function MarketplaceStore() {
       .catch((error) => console.log("error", error));
   };
 
-  useEffect(() => {
-    getStoreLogoBanner();
-  }, []);
+
+
 
   const token = cookies.get("response");
   const authToken = "Bearer " + token;
@@ -154,24 +163,9 @@ function MarketplaceStore() {
     },
   };
 
-  const notify = (type, text) => {
-    if (type === "loginError") {
-      toast(text);
-    } else if (type === "dashError") {
-      toast(text, {
-        position: "top-right",
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        autoClose: false,
-      });
-    }
-  };
+
 
   const allHomeCerts = (page) => {
-    console.log("get all home certs");
     history.push("/marketplace/home?page=" + page);
     sessionStorage.setItem("filterskey", "1");
     axios
@@ -189,17 +183,11 @@ function MarketplaceStore() {
       });
   };
 
-  useEffect(() => {
-    console.log("in simple use effect ");
-    allHomeCerts(currentPage);
-  }, []);
 
 
   const callFunOnKey = () => {
     var checkKey = sessionStorage.getItem("filterskey");
-    console.log("filterskey", checkKey);
     if (checkKey === "1") {
-      console.log("call all home filterkey call func");
       allHomeCerts(currentPage);
     } else if (checkKey === "2") {
       handlePriceChange(currentOrder, true, currentPage, true);
@@ -214,16 +202,12 @@ function MarketplaceStore() {
         handleAvailChange("available", true, currentPage, true);
       }
     } else {
-      console.log("call all home else filterkey call func");
       window.history.replaceState(null, null, "#");
       allHomeCerts(currentPage);
     }
   };
 
-  useEffect(() => {
-    console.log("in use effect current page", currentPage);
-    callFunOnKey();
-  }, [currentPage]);
+
 
   const handlePageClick = (e) => {
     const selectedPage = e;
@@ -233,7 +217,6 @@ function MarketplaceStore() {
 
 
   const handlePriceChange = (order, isPagination, page, active) => {
-    console.log("in handlePriceChange ");
     if (!page) page = 1;
     sessionStorage.setItem("filterskey", "2");
     setCurrentPage(page);
@@ -244,10 +227,8 @@ function MarketplaceStore() {
       return;
     } else if (!isPagination) {
       if (order == "ascending") {
-        // document.getElementById('order-ascending').checked = true;
         document.getElementById("order-descending").checked = false;
       } else {
-        // document.getElementById('order-descending').checked = true;
         document.getElementById("order-ascending").checked = false;
       }
     }
@@ -267,7 +248,6 @@ function MarketplaceStore() {
   };
 
   const handleTypeChange = (order, isPagination, page, active) => {
-    console.log("in handleTypeChange");
     sessionStorage.setItem("filterskey", "3");
     if (!page) page = 1;
     setCurrentOrder(order);
@@ -502,21 +482,6 @@ function MarketplaceStore() {
       return (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3   cardContainer card__nft">
           <div className="card">
-            {t.imageName.split(".").pop() === ("mp4" && "mp3") ? (
-              <div className="card-flyer">
-                <div className="text-box">
-                  <div className="image-box ">
-                    <a href={`./viewCert?id=${t._id}`}>
-                      <img
-                        className="card-img-top img-fluid"
-                        src={`${env.uploadImgLink}${t.thumbNail}`}
-                        alt="certificate"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ) : (
               <div className="card-flyer">
                 <div className="text-box">
                   <div className="image-box ">
@@ -530,7 +495,6 @@ function MarketplaceStore() {
                   </div>
                 </div>
               </div>
-            )}
             <div
               className={
                 t.type?.indexOf("with") == -1
@@ -635,7 +599,7 @@ function MarketplaceStore() {
                   );
                 }}
               />
-              <label for="art" className="ml-2">
+              <label for="order-ascending" className="ml-2">
                 Low to High
               </label>
             </div>
@@ -652,7 +616,7 @@ function MarketplaceStore() {
                   );
                 }}
               />
-              <label for="art" className="ml-2">
+              <label for="order-descending" className="ml-2">
                 High to Low
               </label>
             </div>

@@ -26,7 +26,7 @@ function Dashboard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [firstNameShow, setFirstNameShow] = useState(true);
+  const [firstNameShow, setFirstNameShow] = useState(false);
   const [signData, setSignData] = useState("");
   const [firstName, setFirstName] = useState("");
   const [password, setPassword] = useState("");
@@ -48,7 +48,7 @@ function Dashboard() {
   const toggleModal = (t) => {
     setIsOpen(!isOpen);
     setTransferShow(false);
-    setFirstNameShow(true);
+    setFirstNameShow(false);
   };
   const handlePageClick = (e) => {
     const selectedPage = e;
@@ -651,10 +651,12 @@ function Dashboard() {
       .then((res) => {
         // notify("loginError", res.data.msg);
         setSearchShow(false);
+        setSignUpTransferShow(false)
         setFirstNameShow(true);
         setTransferShow(true);
+        setshowTransferButton(true)
         setReceiverID(res.data.data.id);
-        transfer(data);
+        //transfer(data);
       })
       .catch((err) => {
         if (err.response) {
@@ -849,6 +851,26 @@ function Dashboard() {
                                       {errors.email?.message}
                                     </div>
                                   </div>
+                                  {firstNameShow && (
+                                      <div className="form-group mb-4">
+                                        <input
+                                            name="firstName"
+                                            type="text"
+                                            placeholder="firstName"
+                                            {...register("firstName")}
+                                            onChange={(e) =>
+                                                setFirstName(e.target.value)
+                                            }
+                                            className={`form-control ${
+                                                errors.firstName ? "is-invalid" : ""
+                                            }`}
+                                        />
+
+                                        <div className="invalid-feedback">
+                                          {errors.firstName?.message}
+                                        </div>
+                                      </div>
+                                  )}
                                 </>
                                 {showTransfer && (
                                   <>
@@ -910,7 +932,7 @@ function Dashboard() {
                                         onClick={() => signUp(selectedId)}
                                         // disabled={disableSubmit}
                                       >
-                                        Transfer
+                                        Signup
                                       </button>
                                     )}
                                   </div>

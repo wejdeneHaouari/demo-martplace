@@ -182,7 +182,7 @@ function ViewCert() {
     axios
       .get(
         env.apiUrl +
-          `api/users/find-email?username=${env.username}&email=${data.email}`,
+          `api/users/find-email?userId=${userId}&email=${data.email}`,
         headers
       )
       .then((res) => {
@@ -256,12 +256,12 @@ function ViewCert() {
     axios
       .post(env.apiUrl + "api/users/newsignup", signnupData, options)
       .then((res) => {
-        // notify("loginError", res.data.msg);
         setSearchShow(false);
-        setFirstNameShow(false);
+        setSignUpTransferShow(false)
+        setFirstNameShow(true);
         setTransferShow(true);
+        setshowTransferButton(true)
         setReceiverID(res.data.data.id);
-        transfer(data);
       })
       .catch((err) => {
         if (err.response) {
@@ -911,22 +911,24 @@ function ViewCert() {
                           <h3>Transfer Certificate</h3>
                           <form onSubmit={handleSubmit(onSubmit)}>
                             <>
-                              <div className="form-group mb-4">
-                                <input
-                                  name="firstName"
-                                  type="text"
-                                  placeholder="Recipient First Name"
-                                  value={firstName}
-                                  onChange={(e) => setFirstName(e.target.value)}
-                                  className={`form-control ${
-                                    errors.firstName ? "is-invalid" : ""
-                                  }`}
-                                />
+                              {firstNameShown && (
+                                  <div className="form-group mb-4">
+                                    <input
+                                        name="firstName"
+                                        type="text"
+                                        placeholder="Recipient First Name"
+                                        value={firstName}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                        className={`form-control ${
+                                            errors.firstName ? "is-invalid" : ""
+                                        }`}
+                                    />
 
-                                <div className="invalid-feedback">
-                                  {errors.firstName?.message}
-                                </div>
-                              </div>
+                                    <div className="invalid-feedback">
+                                      {errors.firstName?.message}
+                                    </div>
+                                  </div>
+                              )  }
                               <div className="form-group mb-4">
                                 <input
                                   name="email"
@@ -1002,7 +1004,7 @@ function ViewCert() {
                                     type="button"
                                     onClick={(e) => signUp(certificateArray.id)}
                                   >
-                                    Transfer
+                                    SIGNUP
                                   </button>
                                 )}
                               </div>

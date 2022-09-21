@@ -634,7 +634,7 @@ function Dashboard() {
     }
 
   };
-  const signUp = (data) => {
+  const signUp = () => {
     const signnupData = {
       userRole: "client",
       email: signData.email,
@@ -649,14 +649,13 @@ function Dashboard() {
     axios
       .post(env.apiUrl + "api/users/newsignup", signnupData, options)
       .then((res) => {
-        // notify("loginError", res.data.msg);
         setSearchShow(false);
         setSignUpTransferShow(false)
         setFirstNameShow(true);
         setTransferShow(true);
         setshowTransferButton(true)
         setReceiverID(res.data.data.id);
-        //transfer(data);
+
       })
       .catch((err) => {
         if (err.response) {
@@ -665,9 +664,6 @@ function Dashboard() {
       });
   };
 
-  if (sideDrawerOpen) {
-    console.log(sideDrawerOpen);
-  }
 
   const filteredItems = result_array.filter((item) =>
     item.subject?.toLowerCase().includes(searchTerm.toLowerCase())
